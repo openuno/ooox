@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <document>
-<child name="anydocument"  n="1">
+<child name="anydocument"  n="1" ex="references">
  <child name="querystring" n="0+" o="o" g="datapickup" ex="constants">
  	<a n="varname"/><a n="substitution" /><a n="escape" o="o" />
 	<desc>The first type of data that will be picked up and be available as substitution for output content.<br/>
