@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sample>
-<templatexml w="69%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<templatexml w="69%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>]]>
 <document>
 <!--A quite sophisticated, recursive template that transforms the references data into UI.-->
 <!--We start writing the start of the supported child node, if the child element is optional it will be colored in green-->
@@ -52,8 +52,8 @@
   </condition>
   <html>%contents-and-ending</html>
 </rowtype>
-</document>]]></templatexml>
-<dataxml w="29%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+</document></templatexml>
+<dataxml w="29%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>]]>
 <document><!--A boring tree with informations about supported nodes in a template -->
 <child name="anydocument"  n="1">
  <child name="querystring" n="0+" o="o" g="datapickup" ex="constants">
@@ -149,5 +149,5 @@ However it's very smart and refined : heare a brief feature list:<br/>
 "CONSTANTS" substitutions are fetched and prepared before and are generally always available.<br/>
 "VARIABLES" substitutions are fetched and prepared for each matched row .</desc>
 </child>
-</document>]]></dataxml>
+</document></dataxml>
 </sample>
