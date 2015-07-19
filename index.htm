@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><title>OOO</title><script src="ooox.js"></script>	
+	<script>
+		appstart=function(){
+			uno.xml.preload('template-doc-root.xml',function(){
+				uno.xml.preload('template-doc-x.xml',function(){
+					uno.xml.rendercontrol('maintarget','template-doc-root.xml','template-doc.xml')	
+				});
+			});
+		};
+	</script>
+	<style>body{color:#55D;}
+		a{text-decoration:none;}a:visited{color:inherit;}input[type=button]{border:none;background-color:transparent;}
+		code{display:block;color:#222;}
+		.info{color:black;font:monospace;}
+		.ichild{margin-left:20px;}
+		div.-singlehide{display:none;}
+		code.-multihide{display:none;}
+	</style>
+</head><body onload="appstart()">
+<div style="color:#111">This page references how a template file should be edited.</div>
+<span style="color:#55D">BLUE</span><span style="color:#111"> : Mandatory nodes and attributes.</span>
+<span style="color:#5D5">GREEN</span><span style="color:#111"> : Optional nodes</span>
+<span style="color:#D55">PINK</span><span style="color:#111"> : Optional attributes</span><br/><br/>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;<br/>
+<div id="maintarget">loading...</div></body></html>
