@@ -27,7 +27,7 @@
 <match value="pickup"><a href="#" onclick="return false" title="normal|csv|date  (see additional notes for infos)">pickupmode</a></match>
 <match value="convert"><a href="#" onclick="return false" title="...(see additional notes for infos)">convertmode</a></match>
 <match value="substitution"><a href="#" onclick="return false" title="uniquely prefixed string tokens">utoken</a></match>
-  </switch><html>%optstart<a>%n="%ft"</a>%optend</html><casezero /></rowtype>
+  </switch><html> %optstart<a>%n="%ft"</a>%optend</html><casezero /></rowtype>
 <!--We now want to "close" the element declaration : -->
 <!-- If this element supports childs the "..." button will be displayed -->
 <!-- Else If the supports xml content  the "xmlcontent" text will be visible -->
