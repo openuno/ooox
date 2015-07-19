@@ -1,0 +1,105 @@
+Ci sarà una pagina WHY sul sito del codice del motore client (che non sarà sul sito openuno), ma che cmq rimanderà alla campagna di funding openuno.
+
+
+
+Vi invio la bozza 000.
+
+------------------------------------------------------------------
+
+Sorry for not posting before. Ill try to be less humble.
+
+This code, in more or less this form has been in my hands from almost a 7 years. 
+It's the evolution of some very early prototype utility i creted for myself much earlier (10y+?) when ajax was brand new.
+When ajax was new, as many, I was very intrigued and wanted to soon establish some best practice and code, for maximizing my usage of it.
+
+I realized very clearly that what I wanted to do was eliminate code - from the client and from the server.
+The one way to do this is to switch to some more declarative way of doing things.
+
+In my mind would have had ONE code on the server to outpur for example the XML of a record with id=x.
+
+Then I would have had means of visualizing this data in different ways - depending on the context, for example I could be visualizing the record as a "detail sheet" or maybe as a small dialog card.
+
+...but wait, even as long as 10 years ago there already was work in progress about xslt, wich does just that.
+
+I had my first tries and couldn't have a lot from it... to the 10y jounger me it was too complicated, too fat, too ugly.
+Todady, after having gained a somewhat deep xml experience, it's not complicated infact it's a doable solution however it's usage it's not something as ELASTIC as i would like it too be, and to me it's still ugly and fat.
+
+I know it because this code allows for total freedom and complete fidelity, but in a much lighter way.
+
+Of course it's not something that could ever be a w3c standard, for that I have to say xslt takes care of a whole bunch of different aspects, in the interests of the browser and i guess xslt are good for it...
+
+So, implementing some kind of transformation engine would have been a huge step into my AJAX research.
+...I pursued it and 7y ago, voilà the result.
+
+
+TODAY:
+
+After 7 years of usage I know I made it quite exact, coherent, feature rich, and elegant wich was totally not at the time.
+
+This is meant for the engine itself, the code of the first git push WILL still be messed - first commits will be about removing irrelevant parts and fixing some naming ect... more detailed and readable excption handling and logging - better memory management (its not that bad already))
+
+-----
+
+So it's about transforming xml data to some other string wich could be all sorts of string, being it xml - svg - html - text - csv.
+you will vastly use this system with
+
+ooo.rendercontrol('targetdiv','templateurl.xml','dataurl.xml');
+
+guess what : the innerHTML of target will be replaced with the result of transforation of the data with the template.
+
+of course the next thing you would probably do is
+
+ooo.rendercontrol('targetdiv','templateurl.xml','someotherdataurl.xml');
+or
+ooo.rendercontrol('targetdiv','someothertemplateurl.xml','dataurl.xml');
+
+-----
+
+All this still doesn't answer the WHY question completely.
+There would still be hundreds of ways to do conceptually just that. WHY, for example, a declarative system instead of code?
+Why a system that reaches for complexity and freedom of output via  the use of templates?
+
+The ultimate answer is also about the server.
+
+When you have this code you will realize how much you could do on the client if you had a server serving all kinds of information in arbitrary xml/json. Your app server will never ever have any business to do with HTML, only with data.
+
+If more people did so what would happen then?
+
+All the informations that people maintain and try hard to publish on the web could be available as restful and displyed in who knows what manner 
+by any rendercontrol. Consider that the flexibility of systems goes as far as having templates for generating templates or template recursivity or asyncronous template and data chainloaded. All in ONE line of code everything else being declarative - what could you do with 2 or 3 rendering? This basically means that evry INFORMATION
+Well it's simple - I believe we could break into the cloud - yes because when the cload word was news as an Informatic guy i was much more interested in the informative point of view. I saw "pages" that when not really "hosted" anywhere being the result of many template transformations - presenting data from multiple sources simultaneously in an eterogenous way, perfeclty relevant to the context wich could be infinite.
+
+The key point to reach this level of complexity are just 3 and we already got them all.
+1-XML/JSON - The information paradise - in the sense that maybe it does't always rapresent data in just the shortes way - but it totally 
+"free" all kind of informations can be put in it and humans can understand it almost instintively most of the times.
+2-XML SELECTION - i love jQuery - as in it's selector functionality - however xpath is a much more powerful and yet simple selection system.
+plus it's native - it's the choice for selecting into some arbitrary xml data.(remember:"any information...")
+The two points above by themself enable for this possibility, now to DO it.
+3-The code on the client to do whatever complex transformation we'd like, when we want, easily.
+
+
+
+Now that you know it all, one more thing.
+BECAUSE of this I have started a founding campaing to fund my non profit organization :
+
+I stringly believe we all could benefit from this kind of information accessibility.
+I am pushed to do this also because the "cloud" as i mean it didn't happen quite fast as I hoped.
+Using specifically this code is completely unnecessary, but to push toward this goal I now think we need
+
+
+1 Good technical paradymes avaliable and understood (we got it).
+2 A system on the client to enable large number of users this kind of operations with ease (that's this xml rendering system) xslt faild if i just see at the results in years that it's been available.
+3 A system on the server to enable large number of users (we got this - and wil soon be on githubbut has to be cleared of many tailorizations made for a client of mine.)
+4 A system and paradym ON THE SERVER that is UNDERSTOOD by the data owners - to control the ways their information can be published and used - and what "level of performances" of access to information give to different users.
+5 World class documentation of everything
+6 Some kind of badge so that users could know when they are on page they could consume 
+7 Gospeling - since the information cloud of the future still didn't quite happen.
+8 In the near future a centralized system for advertizing your data server.
+
+
+
+
+
+
+
+
