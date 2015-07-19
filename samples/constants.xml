@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sample>
+<templatexml w="69%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?><document>
+  <constant tagname="a" substitution="%a" />
+  <constant tagname="b" substitution="%b" />
+  <constant tagname="c/@n" substitution="%cn" />
+  <constantjavascript substitution="%cjs">Math.sqrt(25*4.56).toString()+'jssss'</constantjavascript>
+  <afterall>%cn : %b AND %a (this is afterall) %cjs</afterall>
+  <beforeall>%cn : %a AND %b (this is beforeall) %cjs<br/></beforeall>
+</document>]]></templatexml>
+<dataxml w="29%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?><document>
+  <a>data a</a>
+  <b>data b</b>
+  <c n="hey!">data c</c>
+</document>]]></dataxml>
+</sample>
