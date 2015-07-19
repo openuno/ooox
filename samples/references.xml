@@ -38,8 +38,8 @@
 <rowtype tagname="child">
   <variable tagname="@name" substitution="%name" /><variable tagname="@o" substitution="%xo"/><variable tagname="@x" substitution="%xxxx"/>
   <variable tagname="desc" substitution="%desc"/><variable tagname="@ex" substitution="%example"/>
-  <switch value="%xo" substitution="%optstart"><match value="anything" default="true"><![CDATA[<span>]]></match><match value="o"><![CDATA[<span style="color:#5D5">]]></match></switch>
-  <switch value="%xo" substitution="%optend"><match value="o" default="true"><![CDATA[</span>]]></match></switch>
+  <switch value="%xo" substitution="%optstart"><match value="anything" default="true"><![CDATA[<![CDATA[]]><span>]]></match><match value="o"><![CDATA[<![CDATA[]]><span style="color:#5D5">]]></match></switch>
+  <switch value="%xo" substitution="%optend"><match value="o" default="true"><![CDATA[<![CDATA[]]></span>]]></match></switch>
   <switch value="%xxxx" substitution="%fxxxx">
 <match value="anything" default="true">%optstart/&amp;gt;%optend<a href="sample.htm?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></match>
 <match value="x">%optstart&amp;gt;%optendxmlcontent%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></match>
