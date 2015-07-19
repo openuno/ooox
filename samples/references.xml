@@ -11,8 +11,8 @@
 <!--We now want to write the possible attribute list for the supported child node-->
 <!--Instead of selecting all the attributes, we first select the NON OPTIONAL and then the optional ones, this will make the optional ones appear after-->
 <rowtype tagname="child/a[not(@o='o')]|child/a[@o='o']"><variable tagname="@n" substitution="%n"/><variable tagname="@o" substitution="%xo"/>
-  <switch value="%xo" substitution="%optstart"><match value="anything" default="true" /><match value="o">&amp;lt![CDATA[&amp;lt;span style="color:#D55"&amp;gt!]]&amp;gt;</match></switch>
-  <switch value="%xo" substitution="%optend"><match value="anything" default="true" /><match value="o">&amp;lt![CDATA[&amp;lt;/span&amp;gt!]]&amp;gt;</match></switch>
+  <switch value="%xo" substitution="%optstart"><match value="anything" default="true" /><match value="o">&amp;lt![CDATA[&amp;lt;span style="color:#D55"&amp;gt]]&amp;gt;</match></switch>
+  <switch value="%xo" substitution="%optend"><match value="anything" default="true" /><match value="o">&amp;lt![CDATA[&amp;lt;/span&amp;gt]]&amp;gt;</match></switch>
   <switch  value="%n" substitution="%ft"><match value="anything" default="true">%t</match>
 <!--Attributes are known - full line is generated basing on the name.-->
 <match value="xpath"><a href="#" onclick="return false" title="an xpath expression">expression</a></match>
@@ -37,8 +37,8 @@
 <rowtype tagname="child">
   <variable tagname="@name" substitution="%name" /><variable tagname="@o" substitution="%xo"/><variable tagname="@x" substitution="%xxxx"/>
   <variable tagname="desc" substitution="%desc"/><variable tagname="@ex" substitution="%example"/>
-  <switch value="%xo" substitution="%optstart"><match value="anything" default="true">&amp;lt![CDATA[&amp;lt;span&amp;gt!]]&amp;gt;</match><match value="o">&amp;lt![CDATA[&amp;lt;span style="color:#5D5"&amp;gt!]]&amp;gt;</match></switch>
-  <switch value="%xo" substitution="%optend"><match value="o" default="true">&amp;lt![CDATA[&amp;lt;/span&amp;gt!]]&amp;gt;</match></switch>
+  <switch value="%xo" substitution="%optstart"><match value="anything" default="true">&amp;lt![CDATA[&amp;lt;span&amp;gt]]&amp;gt;</match><match value="o">&amp;lt![CDATA[&amp;lt;span style="color:#5D5"&amp;gt]]&amp;gt;</match></switch>
+  <switch value="%xo" substitution="%optend"><match value="o" default="true">&amp;lt![CDATA[&amp;lt;/span&amp;gt]]&amp;gt;</match></switch>
   <switch value="%xxxx" substitution="%fxxxx">
 <match value="anything" default="true">%optstart/&amp;gt;%optend<a href="sample.htm?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></match>
 <match value="x">%optstart&amp;gt;%optendxmlcontent%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></match>
