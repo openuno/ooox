@@ -4,7 +4,7 @@
 		appstart=function(){
 			uno.xml.preload('template-doc-root.xml',function(){
 				uno.xml.preload('template-doc-node.xml',function(){
-					uno.xml.rendercontrol('maintarget','template-doc-root.xml','template-references.xml',false,false,function(){
+					uno.xml.rendercontrol('maintarget','template-doc-root.xml','template-references.xml',false,function(){
 						ooo.toggleclass(ooo.sel('//code',document),'-multihide');
 						ooo.toggleclass(ooo.sel('//a[contains(@class,\'demolink\')]',document),'-multihide');	
 					});
@@ -22,7 +22,7 @@
 		code.-multihide,a.-multihide{display:none;}
 	</style>
 </head><body onload="appstart()">
-<code>This page references how a template file should be edited.<br/>
+<code style="display:block">This page references how a template file should be edited.<br/>
 <span style="color:#55D">BLUE</span><span style="color:#111"> : Mandatory nodes and attributes.</span>
 <span style="color:#5D5">GREEN</span><span style="color:#111"> : Optional nodes</span>
 <span style="color:#D55">PINK</span><span style="color:#111"> : Optional attributes</span></code>
