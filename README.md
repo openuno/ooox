@@ -1,6 +1,6 @@
 # ooox
 Javascript engine for xml transformation.<br/>
-http://www.tipozerozero.com/ooox/<br/>
+<a href="http://www.tipozerozero.com/ooox/" target="_blank">http://www.tipozerozero.com/ooox/</a><br/>
 
 Samples, full featured use case, important renaming are not done yet<br/>
 
