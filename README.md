@@ -1,8 +1,5 @@
 # ooox
-<style>
-#supercontainer{width:100%;text-align:center;}
-</style>
-<div id="supercontainer">
+<div id="supercontainer" style="width:100%;text-align:center;">
 Javascript engine for xml transformation.<br/>
 <a href="http://www.tipozerozero.com/ooox/" target="_blank">www.tipozerozero.com/ooox/</a><br/><br/>
 
