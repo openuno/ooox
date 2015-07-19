@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html><title>OOO - loading...</title>
+<head><script src="../ooox.js"></script>
+<script>ePS=function(elm){return elm.previousSibling};eNS=function(elm){return elm.nextSibling};
+    appstart=function(){
+    	var t=ooo.querystring('t',location.href);
+		if(ooo.inoe(t)){window.close()}
+		else{uno.xml.rendercontrol('maintarget','../sample.xml','../samples/'+t+'.xml');}};
+</script><style>html,body{height:100%;}#maintarget{height:49%;}textarea{height:100%;}</style>
+</head><body onload="appstart()"><div id="maintarget">loading...</div></body></html>
