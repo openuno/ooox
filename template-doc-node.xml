@@ -38,14 +38,14 @@
   <switch value="%xo" substitution="%optstart"><match value="anything" default="true"><![CDATA[<span>]]></match><match value="o"><![CDATA[<span style="color:#5D5">]]></match></switch>
   <switch value="%xo" substitution="%optend"><match value="o" default="true"><![CDATA[</span>]]></match></switch>
   <switch value="%xxxx" substitution="%fxxxx">
-<match value="anything" default="true">%optstart/&amp;gt;%optend<a href="sample.htm/?t=%example" target="_blank">sample</a><code style="margin-left:10px">%desc</code></match>
-<match value="x">%optstart&amp;gt;%optendxmlcontent%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm/?t=%example" target="_blank">sample</a><code style="margin-left:10px">%desc</code></match>
+<match value="anything" default="true">%optstart/&amp;gt;%optend<a href="sample.htm/?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></match>
+<match value="x">%optstart&amp;gt;%optendxmlcontent%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm/?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></match>
   </switch>
   <inline tagname="child" preload="template-doc-root.xml" substitution="%child"/>
   <variable tagname="count(child)" substitution="%check" pickup="xpathresult"/>
   <condition substitution="%contents-and-ending"><js><![CDATA[%check==0]]></js>
   <true>%fxxxx</true>
-  <false>%optstart&amp;gt;%optend<input type="button" value="..." onclick="var e=this.nextSibling;ooo.toggleclass(e,'-singlehide');e=e.nextSibling.nextSibling.nextSibling;ooo.toggleclass(e,'-singlehide')" /><div class="ichild -singlehide"><code style="margin-left:-10px">%desc</code>%child</div>%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm/?t=%example" target="_blank">sample</a><code style="margin-left:10px">%desc</code></false>
+  <false>%optstart&amp;gt;%optend<input type="button" value="..." onclick="var e=this.nextSibling;ooo.toggleclass(e,'-singlehide');e=e.nextSibling.nextSibling.nextSibling;ooo.toggleclass(e,'-singlehide')" /><div class="ichild -singlehide"><code style="margin-left:-10px">%desc</code>%child</div>%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm/?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></false>
   </condition>
   <html>%contents-and-ending</html>
 </rowtype>
