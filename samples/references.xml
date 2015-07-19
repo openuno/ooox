@@ -12,8 +12,8 @@
 <!--We now want to write the possible attribute list for the supported child node-->
 <!--Instead of selecting all the attributes, we first select the NON OPTIONAL and then the optional ones, this will make the optional ones appear after-->
 <rowtype tagname="child/a[not(@o='o')]|child/a[@o='o']"><variable tagname="@n" substitution="%n"/><variable tagname="@o" substitution="%xo"/>
-  <switch value="%xo" substitution="%optstart"><match value="anything" default="true" /><match value="o"><![CDATA[<span style="color:#D55">]]></match></switch>
-  <switch value="%xo" substitution="%optend"><match value="anything" default="true" /><match value="o"><![CDATA[</span>]]></match></switch>
+  <switch value="%xo" substitution="%optstart"><match value="anything" default="true" /><match value="o"><![CDATA[<![CDATA[]]><span style="color:#D55">]]></match></switch>
+  <switch value="%xo" substitution="%optend"><match value="anything" default="true" /><match value="o"><![CDATA[<![CDATA[]]></span>]]></match></switch>
   <switch  value="%n" substitution="%ft"><match value="anything" default="true">%t</match>
 <!--Attributes are known - full line is generated basing on the name.-->
 <match value="xpath"><a href="#" onclick="return false" title="an xpath expression">expression</a></match>
@@ -46,7 +46,7 @@
   </switch>
   <inline tagname="child" preload="template-doc-root.xml" substitution="%child"/>
   <variable tagname="count(child)" substitution="%check" pickup="xpathresult"/>
-  <condition substitution="%contents-and-ending"><js><![CDATA[%check==0]]></js>
+  <condition substitution="%contents-and-ending"><js>%check==0</js>
   <true>%fxxxx</true>
   <false>%optstart&amp;gt;%optend<input type="button" value="..." onclick="var e=this.nextSibling;ooo.toggleclass(e,'-singlehide');e=e.nextSibling.nextSibling.nextSibling;ooo.toggleclass(e,'-singlehide')" /><div class="ichild -singlehide"><code style="margin-left:-10px">%desc</code>%child</div>%optstart&amp;lt;/%name&amp;gt;%optend<a href="sample.htm?t=%example" target="_blank" class="demolink">sample</a><code style="margin-left:10px">%desc</code></false>
   </condition>
