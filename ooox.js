@@ -72,6 +72,25 @@ $.toggleclass=function(ee,v){if(ee.style){ee=[ee];}var c;for(var e=0;e<ee.length
  /* XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - */
  $.parsexml=function(xml){var xmlDoc=false;try{var xmlParser=new DOMParser();xmlDoc=xmlParser.parseFromString(xml,"text/xml");}catch(errr){try{xmlDoc=new ActiveXObject("Microsoft.XMLDOM");xmlDoc.async=false;xmlDoc.loadXML(xml);}catch(err){this.err('There was an error parsing the xml string or the browser do not support xml parsing.\n'+errr.message);}}return xmlDoc;};
  $.loadxmlsync=function(url){var xd=false;/*Chrome, Safari*/if(is_chrome||is_safari){var pr=new XMLHttpRequest();pr.open('GET',url,false);pr.send(null);return pr.responseXML;}else{/*Internet Explorer*/try{xd=new ActiveXObject("Microsoft.XMLDOM");}catch(exxx){/*firefox,mozilla,opera,etc.*/try{xd=document.implementation.createDocument("","",null);}catch(exx){this.err('This browser have a problem creating a new xml document using the w3c way[document.implementation.createDocument("", "", null)]\n'+exx.message);}}try{xd.async=false;xd.load(url);}catch(ex){ooo.err('There was an error invoking a [xmlDoc.async = false;xmlDoc.load(url)] : \n'+ex.message);}return xd;}};
+  $.load=function(url,_form,_onfinish,_onstep,_onerror){
+ 	 var req=this._req();
+ 	 req.onreadystatechange=this._doload;
+ 	 if(!_form){   		 
+  		 req.open("GET",uno.xml._asyncjobs[idx].url,true);req.send('');
+ 	 }else{var hasfile=false;
+
+ 	 }
+ };
+ $._doload=function(a,b,c,d){
+ 	console.log('--a--');
+ 	console.log(a);
+ 	console.log('--b--');
+ 	console.log(b);
+ 	console.log('--c--');
+ 	console.log(c);
+ 	console.log('--d--');
+ 	console.log(d);
+ };
  /* XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - */
  $._XTRsubs=function(v,vv,nn){if(this.inoe(v)){return '';}if(vv){for(var i=0;i<vv.length;i++){v=this.sub(v,nn[i],vv[i]);}}return v;};
  /* DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - */
