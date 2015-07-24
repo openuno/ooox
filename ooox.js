@@ -409,6 +409,7 @@ uno.xml._varpickup=function(exp,node,mode){if(ooo.inoe(mode)){mode='normal';}
         else if(ooo.starts(exp,'@')){return ooo.xatt(node,exp.slice(1));}
         else{var xx=ooo.sel(exp,node);
           if(mode=='normal'){return ooo.ixml(xx[0],true);}
+          if(mode=='cdata'){return ooo.ixml(xx[0],false);}
           else if(mode=='xpathresult'){return xx}
           else if(ooo.starts(mode,'csv')){var sep='!';if(mode.indexOf(':')>-1){sep=mode.split(':')[1]};var out='';var x;var o='';for(x=0;x<xx.length-1;x++){o=ooo.ixml(xx[x],true);if(o){out+=o+sep;}}o=ooo.ixml(xx[xx.length-1],true);if(o){out+=o;}return out;}   
           else if(mode=='date'){var out=ooo.ixml(xx[0],true);var y=parseInt(out.substr(0,4));var m=parseInt(out.substr(4,2));var d=parseInt(out.substr(6,2));var h=parseInt(out.substr(8,2));var mm=parseInt(out.substr(12,2));var s=parseInt(out.substr(15,2));return new Date(y,m-1,d,h,mm,s);}       
