@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sample>
-<templatexml w="69%">&amp;lt?xml version="1.0" encoding="utf-8" ?&amp;gt
+<templatexml w="69%">
 <document>
 <!--We start writing the start of the supported child node, if the child element is optional it will be colored in green-->
 <rowtype tagname="child"><variable tagname="@name" substitution="%name" /><variable tagname="@o" substitution="%xo"/>
@@ -54,7 +54,7 @@
 </document></templatexml>
 
 
-<dataxml w="29%"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>]]>
+<dataxml w="29%">
 <document><!--A boring tree with informations about supported nodes in a template -->
 <child name="anydocument"  n="1">
  <child name="querystring" n="0+" o="o" g="datapickup" ex="constants">
