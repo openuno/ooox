@@ -22,8 +22,8 @@
     <true>Const cond 3 evalued TRUE (%cn3)<br/></true><false>Const cond 3 evalued FALSE (%cn3)<br/></false>
     <error>Const cond 3 evalued ERROR (%cn3)<br/></error></constantcondition>
     
-  <afterall><div style="border:1px solid black">(this red is afterall)<br/>Following some conditions : <br/>%ccond1%ccond2%ccond3</div></afterall>
-  <beforeall><div style="border:1px solid black">(this red is beforeall)<br/>
+  <afterall><div style="border:1px solid black">(this is afterall)<br/>Following some conditions : <br/>%ccond1%ccond2%ccond3</div></afterall>
+  <beforeall><div style="border:1px solid black">(this is beforeall)<br/>
              One constant : %a<br/>Other two constants : %b and %cn<br/>
              Another phrase : %js2b AND %cn : %a AND %b %cjs<br/>
              Csv pickup : %pickedup<br/>
