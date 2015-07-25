@@ -9,7 +9,7 @@ window.ooo={};
 (function($,window,undefined){$.$$=function(e){if(typeof e=='string'){e=document.getElementById(e);}return e;};$.err=function(msg,ex){console.log(msg)};
 /*-----------------------------------------------------------------------------------------------------  STRING UTILITIES */
   $.host=document.location.protocol+'//'+document.location.hostname;$._uid=0;$.uid=function(_pfx){this._uid++;if(!_pfx){_pfx='uid';}return _pfx+this._uid;};
- $.starts=function(v,m){return v.substring(0,m.length)===m};$.ends=function(v,m){return v.length>=m.length&&v.substr(v.length-m.length)===m;};$.inoe=function(v){if(!v){return true}return (v==null||v==='')};
+ $.starts=function(v,m){return v.indexOf(m)==0};$.ends=function(v,m){return v.length>=m.length&&v.substr(v.length-m.length)===m;};$.inoe=function(v){if(!v){return true}return (v==null||v==='')};
  $.sub=function(v,m,n,icase){return v.replace(new RegExp(m.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(icase?"gi":"g")),(typeof(n)=="string")?n.replace(/\$/g,"$$$$"):n);};
  $.pureid=function(v){return v.replace(/ |}|\||<|>|\\|!|"|£|$|%|&|\/|\(|\)|=|\?|'|"|^|\*|\+|\[|\]|§|#|°|@|\.|,|;|:|à|è|ì|ò|ù/g,'');};
  $.regexdecode=function(svalue){var i=0;for(i=this._regexA.length;i<-1;i--){svalue=svalue.replace(this._regexB[i],this._regexA[i]);}return svalue;};
@@ -69,7 +69,15 @@ $.load=function(url,_elm,_onfinish,_onstep,_onerror,_mem){var req=this._req();
 /*-----------------------------------------------------------------------------------------------------  XML RENDER TOOL */
  $.preload=function(url,_onfinish,_mem){if(!_mem){_mem={}}_mem.pre_url=url;_mem.pre_onfinish=_onfinish;return $.load(url,false,$._dopreload,false,false,_mem)};
  $.preloaded=function(name){name=ooo.sub(name,'#HOST#',ooo.host);for(var i=0;i<ooo._preloaded.length;i++){if(ooo._preloaded[i].url==name){return ooo._preloaded[i].xml;}}return false;};
- $.syncrender=function(target,template,data,_mode){$._syncrender(target,template,data,_mode||'normal');}
+ $.syncrender=function(target,template,data,_mode){var allsubs=ooo.sel('//*/@substitution',template);
+ var b;for(var a=0;a<allsubs.length;a++){
+ 	for(b=a+1;b<allsubs.length;b++){
+ 		if(ooo.starts(allsubs[a].value,allsubs[b].value)||ooo.starts(allsubs[b].value,allsubs[a].value)){
+ 			console.warn('Not all substitutions are uniquely prefixed:'+allsubs[a]+':'+allsubs[b])
+ 		}
+ 	}
+ }
+ $._syncrender(target,template,data,_mode||'normal');};
  $.render=function(target,template,data,_elm,_mode,_onfinish,_onstep,_onerror){return $.load(template,_elm,$._dorendercontrol1,false,false,{"target":target,"template":template,"data":data,"elm":_elm,"onfinish":_onfinish,"onstep":_onstep,"onerror":_onerror,"mode":_mode||'normal'});};
  $._req=function(){var rq=false;if(window.XMLHttpRequest&&!(window.ActiveXObject)){try{rq=new XMLHttpRequest();}catch(exk){rq=false;}}else if(window.ActiveXObject){try{rq=new ActiveXObject("Msxml2.XMLHTTP");}catch(ex){try{rq=new ActiveXObject("Microsoft.XMLHTTP");}catch(exx){rq=false;}}}if(!rq){ooo.err('This browser is neither w3c or mozilla compatible*[2008], uno.xml javascript framework will not work.');}return rq;};
  $._doload=function(ev,_elm,_onfinish,_onstep,_onerror,_mem){
@@ -82,7 +90,7 @@ $.load=function(url,_elm,_onfinish,_onstep,_onerror,_mem){var req=this._req();
     var prel;for(var xi=0;xi<ins.length;xi++){prel=ooo.xatt(ins[xi],'preload');if(!$.preloaded(prel)){flag=true;break;}}}}
     //TODO:Check inline's inlines
     if(flag){$.preload(prel,$._dorendercontrol2,oo);}else{$.load(oo.data,oo.elm,$._dorendercontrol3,false,false,oo);}};
- $._dorendercontrol3=function(req,oo){oo.dataXML=ooo.parsexml(req.responseText);var s=$._syncrender(oo.target,oo.templateXML.documentElement,oo.dataXML.documentElement,oo.mode||'normal');if(oo.onfinish){oo.onfinish(s,oo)}};
+ $._dorendercontrol3=function(req,oo){oo.dataXML=ooo.parsexml(req.responseText);var s=$.syncrender(oo.target,oo.templateXML.documentElement,oo.dataXML.documentElement,oo.mode||'normal');if(oo.onfinish){oo.onfinish(s,oo)}};
 /*--------------------------------------------------------------------------------------------  XML RENDER MAIN FUNCTION */
 /*THIS is the most complex and useful js function I ever wrote - everything else in this script,is to make THIS possible.*/
 /*--------------------------------------------------------------------------------------------  XML RENDER MAIN FUNCTION */
@@ -94,7 +102,7 @@ $.load=function(url,_elm,_onfinish,_onstep,_onerror,_mem){var req=this._req();
  	consts[consts.length]=eval(js);consts[consts.length-1]=ooo.escape(consts[consts.length-1],ooo.xatt(nn[v],'escape'));}
  /*CONSTANT CONDs*/nn=$.sel('//constantcondition',template); for(v=0;v<nn.length;v++){const_conds_name[v]=ooo.xatt(nn[v],'substitution');js=ooo._XTRsubs(ooo.cixml(nn[v],'js',true),consts,consts_name);
   	try{if(eval(js)){const_conds[v]=ooo.cixml(nn[v],'true',true);}else{const_conds[v]=ooo.cixml(nn[v],'false',true);}}catch(jsex){const_conds[v]=ooo.cixml(nn[v],'error',true);}const_conds[v]=ooo.escape(const_conds[v],ooo.xatt(nn[v],'escape'));}
-/*TITLE HANDLING*/nn=ooo.selone('//title',template);console.log(nn);if(nn){document.title=ooo._MXTRsubs(ooo.ixml(nn,true),[const_conds,const_conds_name,consts,consts_name]);}
+/*TITLE HANDLING*/nn=ooo.selone('//title',template);if(nn){document.title=ooo._MXTRsubs(ooo.ixml(nn,true),[const_conds,const_conds_name,consts,consts_name]);}
 /*BEFOREALL WRITE*/var html=ooo._MXTRsubs(ooo.cixml(template,'beforeall',true),[const_conds,const_conds_name,consts,consts_name]);
 /*ROWTYPE FETCH AND RESET*/var rowtypes=ooo.sel('//rowtype',template);var ddoc=ooo.getdoc(data);var rows=null;
 	var htm2='';var outcodes=null;if(_outcodes){outcodes=_outcodes;}else{outcodes=new Array();}var xins=null;
