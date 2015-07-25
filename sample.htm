@@ -5,7 +5,7 @@
     appstart=function(){
     	var t=ooo.querystring('t',location.href);
 	if(ooo.inoe(t)){window.close()}
-	else{uno.xml.rendercontrol('maintarget','sample.xml','samples/'+t+'.xml');}};
+	else{ooo.render('maintarget','sample.xml','samples/'+t+'.xml');}};
 </script>
 <style>body{color:#55D;}
 		a{text-decoration:none;}a:visited{color:inherit;}
