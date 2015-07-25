@@ -1,4 +1,5 @@
-/*---------- uno.xml.js v 0.8.0.0 - Released by Hideki Yamamoto - GPL equiv. ----------*/
+/*---------- uno.xml.js v 0.8.0.0 - Released by Hideki Yamamoto - MIT equiv. ----------*/
+/*This is not minified, this is how I have worked up until now.*/
 /*u1=function(o,t,v){o.setAttribute(t,v);};_u2=function(u){var o=document.createElement('script');_u1(o,'type','text/javascript');_u1(o,'src',u);document.getElementsByTagName('head')[0].appendChild(o);};*/
 //---------------------------------------------------------------------------------------------------------------  BROWSER RECOGNITION
 window._t00UA=navigator.userAgent.toLowerCase();window._t00D=window.document;
@@ -21,7 +22,6 @@ window.ooo={};
  $._regexA=['\\','[','^','$','.','|','?','*','+','(',')'];$._regexB=['\\\\','\\[','\\^','\\$','\\.','\\|','\\?','\\*','\\+','\\(','\\)'];
  /*uno.escapejs=function(svalue){return svalue.replace(/(["'\\\.\|\[\]\^\*\+\?\$\(\)])/g, '\\$1');};*/
  $.escape=function(v,mode){if(v&&mode){if(mode=='num'){v=v.replace(/\./g, '')}else if(mode=='text'){v=v.replace(/<(.|\n)*?>/g,'');}else if(mode=='js'){v=v.replace(/'/g,'\\\'');}else if(mode=='xml'){v=v.replace(/"/g,'&quot;');}else if(mode=='url'){v=encodeURIComponent(v);}else if(mode=='lru'){v=decodeURIComponent(v);}else if(mode=='id'){v=this.pureid(v);}else if(mode=='html'){v=this.htmlentities(v);}}return v;};
- 
  /* HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - */
  /* HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - HTML DOM - */
  $.att=function(e,a,v){if(e){if(v){e.setAttribute(a,v);}else{return e.getAttribute(a)}}return false};
@@ -34,12 +34,12 @@ window.ooo={};
  $.openbrowser=function(url){var thewindow=window.open(url,"save_listing","width=800,height=600,resizable=no,scrollbars=no,menubar=no,status=no,toolbar=no");};
  $.getscripturl=function(scriptname){var s='';var x=0;var scrs=document.getElementsByTagName('head')[0].getElementsByTagName('script');for(var i=0;i<scrs.length;i++){s=scrs[i].getAttributeNode("src").value;x=s.indexOf(scriptname);if(x>-1){return s.substring(0,x);}}this.err('Could not find the script name in the url of any of the loaded scripts.');return '';}
  $.querystring=function(key,qs){if(this.inoe(qs)){if(History){if(History.getState){qs=History.getState().url;}}if(!qs){qs=location.href}}qs=qs.slice(qs.indexOf('?'));if(!key){return qs;}if(key==''){return '';}var deft_="";key=key.replace(/[\[]/,'\\\[').replace(/[\]]/,'\\\]');var regex=new RegExp('[\\?&]'+key+'=([^&#]*)');qs=regex.exec(qs);if(qs==null){return deft_;}else{return decodeURIComponent(qs[1]);}};
- $.cookie={	write:function(name,value,days){var expires='';if(days){var date=new Date();date.setTime(date.getTime()+(days*24*60*60*1000));expires='; expires='+date.toGMTString();}document.cookie=name+"="+encodeURIComponent(value)+expires+"; path=/";},
+ $.cookie={write:function(name,value,days){var expires='';if(days){var date=new Date();date.setTime(date.getTime()+(days*24*60*60*1000));expires='; expires='+date.toGMTString();}document.cookie=name+"="+encodeURIComponent(value)+expires+"; path=/";},
 			read:function(name){var c;var nameEQ=name+"=";var ca=document.cookie.split(';');for(var i=0;i<ca.length;i++){c=ca[i];while(c.charAt(0)==' ')c=c.substring(1,c.length);if(c.indexOf(nameEQ)==0){return decodeURIComponent(c.substring(nameEQ.length,c.length));}}return null;},
 			erase:function(name){this.write(name,"",-1);}};
-$.showhide=function(ee,v){if(ee.style){ee=[ee];}var s='none';if(v){s='';}for(var e=0;e<ee.length;e++){ee[e].style.display=s}};
-$.toggleclass=function(ee,v){if(ee.style){ee=[ee];}var c;for(var e=0;e<ee.length;e++){c=ee[e].className;if(c.indexOf(v)>-1){c=c.replace(v,'');}else{c=c+' '+v;}ee[e].className=c;}};
-//uno.fixrelativeurls=function(){var aa=document.getElementsByTagName('a');var h='//'+location.hostname;var a=null;for(var x=0;x<aa.length;x++){a=aa[x].href;aa[x].setAttribute('href',a);}};
+ $.showhide=function(ee,v){if(ee.style){ee=[ee];}var s='none';if(v){s='';}for(var e=0;e<ee.length;e++){ee[e].style.display=s}};
+ $.toggleclass=function(ee,v){if(ee.style){ee=[ee];}var c;for(var e=0;e<ee.length;e++){c=ee[e].className;if(c.indexOf(v)>-1){c=c.replace(v,'');}else{c=c+' '+v;}ee[e].className=c;}};
+ //uno.fixrelativeurls=function(){var aa=document.getElementsByTagName('a');var h='//'+location.hostname;var a=null;for(var x=0;x<aa.length;x++){a=aa[x].href;aa[x].setAttribute('href',a);}};
  /* EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - EVENTS - */
  /*$.on=function(elm,event,handler){if(elm.addEventListener){elm.addEventListener(event,handler,false);}else{if(!handler.$$guid)handler.$$guid=this._uid++;if(!elm.events)elm.events={};var hh=elm.events[event];if(!hh){hh=elm.events[event]={};if(elm['on'+event])hh[0]=elm['on'+event];elm['on'+event]=this._hev;}hh[handler.$$guid]=handler;}};
  $.off=function(elm,event,handler){if(elm.removeEventListener){elm.removeEventListener(event,handler,false);}else if(elm.events && elm.events[event] && handler.$$guid)delete element.events[event][handler.$$guid];};
@@ -60,7 +60,7 @@ $.toggleclass=function(ee,v){if(ee.style){ee=[ee];}var c;for(var e=0;e<ee.length
  else{if(n.nodeName!='#document'){test=tab+opent+n.nodeName;if(n.attributes){for(var ai=0;ai<n.attributes.length;ai++){test+=' '+n.attributes[ai].name+'="'+this._xnatt(n.attributes[ai])+'"';}}}
   if(n.childNodes.length>0){if(n.nodeName!='#document'){test+=closet+nl;}for(var i=0;i<n.childNodes.length;i++){if(n.childNodes[i].nodeName=='#text'){var data=this._xntext(n.childNodes[i]);if(killempty){for(var axe=0;axe<1000;axe++){if(data.indexOf(' ')==0){data=data.replace(' ', '');}else if(data.indexOf('\n')==0){data=data.replace('\n', '');}else{axe=2000;}}}if(data!=''){test+=tab+incr+this._xntext(n.childNodes[i])+nl;}}else if(n.childNodes[i].nodeName=='#cdata-section'){test+=tab+incr+bcdata+this._xntext(n.childNodes[i])+acdata+nl;}else if(n.childNodes[i].nodeType==1){test+=this.tostringformat(n.childNodes[i],tab+incr,opent,closet,nl,incr,rcd,killempty);}}}
 	else{if(n.nodeName!='#document'){return test+='/'+closet+nl;}}if(n.nodeName!='#document'){return test+tab+opent+'/'+n.nodeName+closet+nl;}else{return test;}}};
-  $.listonode=function(nl){var xml='<?xml version="1.0" encoding="utf-8" ?><document>\n<!--copyright openuno.org 2015-->';for(var n=0;n<nl.length;n++){xml+=this.xml(nl[n]);}return this.parsexml(xml+'</document>').documentElement;};
+ $.listonode=function(nl){var xml='<?xml version="1.0" encoding="utf-8" ?><document>\n<!--copyright openuno.org 2015-->';for(var n=0;n<nl.length;n++){xml+=this.xml(nl[n]);}return this.parsexml(xml+'</document>').documentElement;};
  /* XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - */
  /* XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - XPATH - */
  $.getdoc=function(n){while(n.nodeType!=9){n=n.parentNode;}return n;};
@@ -72,172 +72,177 @@ $.toggleclass=function(ee,v){if(ee.style){ee=[ee];}var c;for(var e=0;e<ee.length
  /* XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - XML LOAD - */
  $.parsexml=function(xml){var xmlDoc=false;try{var xmlParser=new DOMParser();xmlDoc=xmlParser.parseFromString(xml,"text/xml");}catch(errr){try{xmlDoc=new ActiveXObject("Microsoft.XMLDOM");xmlDoc.async=false;xmlDoc.loadXML(xml);}catch(err){this.err('There was an error parsing the xml string or the browser do not support xml parsing.\n'+errr.message);}}return xmlDoc;};
  $.loadxmlsync=function(url){var xd=false;/*Chrome, Safari*/if(is_chrome||is_safari){var pr=new XMLHttpRequest();pr.open('GET',url,false);pr.send(null);return pr.responseXML;}else{/*Internet Explorer*/try{xd=new ActiveXObject("Microsoft.XMLDOM");}catch(exxx){/*firefox,mozilla,opera,etc.*/try{xd=document.implementation.createDocument("","",null);}catch(exx){this.err('This browser have a problem creating a new xml document using the w3c way[document.implementation.createDocument("", "", null)]\n'+exx.message);}}try{xd.async=false;xd.load(url);}catch(ex){ooo.err('There was an error invoking a [xmlDoc.async = false;xmlDoc.load(url)] : \n'+ex.message);}return xd;}};
-  $.load=function(url,_form,_onfinish,_onstep,_onerror){
- 	 var req=this._req();
- 	 req.onreadystatechange=this._doload;
- 	 if(!_form){   		 
-  		 req.open("GET",uno.xml._asyncjobs[idx].url,true);req.send('');
- 	 }else{var hasfile=false;
-
- 	 }
+ $.load=function(url,_elm,_onfinish,_onstep,_onerror,_mem){var req=this._req();
+ 	req.onreadystatechange=function(ev){$._doload(ev,_elm,_onfinish,_onstep,_onerror,_mem);};if(!_elm){req.open("GET",url,true);req.send('');}
+ 	else{var hasfile=false;
+ 	 	if(!hasfile){req.open("POST",url,true);req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    		console.log('todo:ooo serialize');req.send(ooo.serialize(_elm))}
+    	else{console.log('todo:file upload');}}return false;};
+ $.preload=function(url,_onfinish,_mem){if(!_mem){_mem={}}_mem.pre_url=url;_mem.pre_onfinish=_onfinish;return $.load(url,false,$._dopreload,false,false,_mem)};
+ $.preloaded=function(name){name=ooo.sub(name,'#HOST#',ooo.host);for(var i=0;i<ooo._preloaded.length;i++){if(ooo._preloaded[i].url==name){return ooo._preloaded[i].xml;}}return false;};
+ $.syncrender=function(target,template,data,_mode){$._syncrender(target,template,data,_mode||'normal');}
+ $.render=function(target,template,data,_elm,_mode,_onfinish,_onstep,_onerror){return $.load(template,_elm,$._dorendercontrol1,false,false,{"target":target,"template":template,"data":data,"elm":_elm,"onfinish":_onfinish,"onstep":_onstep,"onerror":_onerror,"mode":_mode||'normal'});};
+ $._req=function(){var rq=false;if(window.XMLHttpRequest&&!(window.ActiveXObject)){try{rq=new XMLHttpRequest();}catch(exk){rq=false;}}else if(window.ActiveXObject){try{rq=new ActiveXObject("Msxml2.XMLHTTP");}catch(ex){try{rq=new ActiveXObject("Microsoft.XMLHTTP");}catch(exx){rq=false;}}}if(!rq){ooo.err('This browser is neither w3c or mozilla compatible*[2008], uno.xml javascript framework will not work.');}return rq;};
+ $._doload=function(ev,_elm,_onfinish,_onstep,_onerror,_mem){
+ 	var req=(ev.currentTarget||ev.target||ev.srcElement);if(req.readyState>1&&req.readyState<4){if(req.status==200){if(_onstep)_onstep(req);}
+ 	}else if(req.readyState==4){if(req.status==200){_onfinish(req,_mem);}else{console.log('Request failed');console.log(req);if(_onerror){_onerror(req)}}}};
+ $._preloaded=[];$._dopreload=function(req,oo){$._preloaded[$._preloaded.length]={url:oo.pre_url,xml:ooo.parsexml(req.responseText)};if(oo.pre_onfinish){oo.pre_onfinish(req,oo);}};
+ $._dorendercontrol1=function(req,oo){oo.templateXML=ooo.parsexml(req.responseText);console.log(oo);$._dorendercontrol2(false,oo);};
+ $._dorendercontrol2=function(nouse,oo){/*AUTOMAGIC PRELOAD RETRIVAL*/
+    var ins=ooo.sel('//inline',oo.templateXML);var flag=false;if(ins){if(ins.length>0){
+    var prel;for(var xi=0;xi<ins.length;xi++){prel=ooo.xatt(ins[xi],'preload');if(!$.preloaded(prel)){flag=true;break;}}}}
+    //TODO:Check inline's inlines
+    if(flag){$.preload(prel,$._dorendercontrol2,oo);}else{$.load(oo.data,oo.elm,$._dorendercontrol3,false,false,oo);}
  };
- $._doload=function(a,b,c,d){
- 	console.log('--a--');
- 	console.log(a);
- 	console.log('--b--');
- 	console.log(b);
- 	console.log('--c--');
- 	console.log(c);
- 	console.log('--d--');
- 	console.log(d);
- };
- /* XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - XTR ENGINE - */
+ $._dorendercontrol3=function(req,oo){oo.dataXML=ooo.parsexml(req.responseText);var s=$._syncrender(oo.target,oo.templateXML.documentElement,oo.dataXML.documentElement,oo.mode||'normal');if(oo.onfinish){oo.onfinish(s,oo)}};
+ $._syncrender=function(target,template,data,_mode,_outcodes){if(!data){if(target){return null;}else{return '';}}template=uno.xml._preloadntt(template,false);
+ var rt=0;var x=0;var v=0;var i=0;var s='';var vins;var prel;var js='';var nn=new Array();var tn='';var tn1=null;var tn2=null;
+ var consts=new Array();var consts_name=new Array();
+ //Prepare constants
+ var nn=ooo.sel('//constant',template);
+ for(v=0;v<nn.length;v++){consts[v]=ooo._varpickup(nn[v],data);consts_name[v]=ooo.xatt(nn[v],'substitution');}
+ //v+=1;consts_name[v]='#DATE.NOW#';consts[v]=(new Date().toLocaleString()); 
+ //Prepare and plot constant javascripts;
+ nn=$.sel('//constantjavascript',template);
+ for(v=0;v<nn.length;v++){tn=ooo.xatt(nn[v],'substitution');
+  js=ooo.ixml(nn[v],true);js=ooo._XTRsubs(js,consts,consts_name);
+  consts[consts.length]=eval(js);consts[consts.length-1]=ooo.escape(consts[consts.length-1],ooo.xatt(nn[v],'escape'));consts_name[consts_name.length]=tn;}
+ //Prepare and plot constant conditions;
+ var const_xconds=null;var const_conds=new Array();var const_conds_name=new Array();
+ const_xconds=template.getElementsByTagName('constantcondition');
+ for(v=0;v<const_xconds.length;v++){
+  const_conds_name[v]=ooo.xatt(const_xconds[v],'substitution');
+  js=ooo.cixml(const_xconds[v],'js',true);js=ooo._XTRsubs(js,consts,consts_name);
+  try{if(eval(js)){const_conds[v]=ooo.cixml(const_xconds[v],'true',true);}
+  else{const_conds[v]=ooo.cixml(const_xconds[v],'false',true);const_conds[v]=ooo.escape(const_conds[v],ooo.xatt(const_xconds[v],'escape'));}}catch(jsex){
+	  const_conds[v]=ooo.cixml(const_xconds[v],'error',true);const_conds[v]=ooo.escape(const_conds[v],ooo.xatt(const_xconds[v],'escape'));}}
+ //Start Writing
+ var html=ooo.sel('//title',template);for(e=0;e<html.length;e++){var v=ooo._XTRsubs(ooo._XTRsubs(ooo.ixml(html[0],true),const_conds,const_conds_name),consts,consts_name);document.title=v;}
+ s=ooo.cixml(template,'beforeall',true);s=ooo._XTRsubs(s,const_conds,const_conds_name);
+ html=ooo._XTRsubs(s,consts,consts_name);
+ //Fetch row types
+ var rowtypes=ooo.sel('//rowtype',template);
+ var xvars=null;var xins=null;var vars=new Array();var vars_name=new Array();
+ var rows=null;var rbefore='';var rafter='';var between='';var hasbetween=true;var betweenstep;var pagecount;
+ var xconds=null;var conds=new Array();var condsE=new Array();var condsT=new Array();var condsF=new Array();var conds_name=new Array();var conds_js=new Array();
+ var xswitches=null;var xswitchesv=new Array();
+ //Write row types 
+ var ddoc=ooo.getdoc(data);
+ var htm2='';var outcodes=null;if(_outcodes){outcodes=_outcodes;}else{outcodes=new Array();}var maxrows=-1;var minrows=0;
+ for(rt=0;rt<rowtypes.length;rt++){
+  //Fetch ROWS
+  s=ooo.xatt(rowtypes[rt],'tagname');
+  if(s=="#DOCUMENT#"){rows=new Array();rows[0]=data;}else{s=ooo._XTRsubs(s,const_conds,const_conds_name);s=ooo._XTRsubs(s,consts,consts_name);rows=ooo.sel(s,data,ddoc);}
+  maxrows=ooo.xatt(rowtypes[rt],'max');if(ooo.inoe(maxrows)){maxrows=rows.length;}else{maxrows=parseInt(maxrows);}  
+  minrows=ooo.xatt(rowtypes[rt],'min');if(ooo.inoe(minrows)){minrows=0;}else{minrows=parseInt(minrows);}
+  //If rowtype applies
+  if(rows.length>=minrows){
+  /*CASE ZERO*/if(rows.length==0){htm2+=ooo._MXTRsubs(ooo.cixml(rowtypes[rt],'casezero',true),[const_conds,const_conds_name,consts,consts_name]);}
+  else{if(rows.length<maxrows){maxrows=rows.length;}pagecount=2;/*START ROW FETCHES*/
+   /*RESET*/vars=null;vars=new Array();vars_name=null;vars_name=new Array();
+   /*VARS*/xvars=rowtypes[rt].getElementsByTagName('variable');for(v=0;v<xvars.length;v++){vars_name[v]=ooo.xatt(xvars[v],'substitution');vars[v]='';}
+   /*STATICS*/v=vars_name.length;vars_name[v]='#TEXT#';vars[v]='';v=vars_name.length;vars_name[v]='#XML#';vars[v]='';
+   			  v=vars_name.length;vars_name[v]='#ROWIDX#';vars[v]='';v=vars_name.length;vars_name[v]='#ROWCOUNT#';vars[v]='';
+   			  v=vars_name.length;vars_name[v]='#PAGECOUNT#';vars[v]='';v=vars_name.length;vars_name[v]='#INNERXML#';vars[v]='';
+   //SWITCHES, INLINE, CONDITIONS*/
+   xswitches=rowtypes[rt].getElementsByTagName('switch');for(v=0;v<xswitches.length;v++){vins=vars_name.length;vars_name[vins]=ooo.xatt(xswitches[v],'substitution');xswitchesv[v]=ooo.xatt(xswitches[v],'value');}
+   xins=rowtypes[rt].getElementsByTagName('inline');for(v=0;v<xins.length;v++){vins=vars_name.length;vars_name[vins]=ooo.xatt(xins[v],'substitution');}
+   xconds=rowtypes[rt].getElementsByTagName('condition');for(v=0;v<xconds.length;v++){
+    conds_name[v]=ooo.xatt(xconds[v],'substitution');conds_js[v]=ooo._MXTRsubs(ooo.cixml(xconds[v],'js',true),[const_conds,const_conds_name,consts,consts_name]);
+    condsT[v]=ooo.cixml(xconds[v],'true',true);if(condsT[v]==null)condsT[v]='';
+    condsF[v]=ooo.cixml(xconds[v],'false',true);if(condsF[v]==null)condsF[v]='';
+    condsE[v]=ooo.cixml(xconds[v],'error',true);if(condsE[v]==null)condsE[v]='';}
+   /*BEFORE,AFTER,BETWEEN*/
+   rbefore=ooo._XTRsubs(ooo.cixml(rowtypes[rt],'before',true),const_conds,const_conds_name);
+   rafter=ooo._XTRsubs(ooo.cixml(rowtypes[rt],'after',true),const_conds,const_conds_name);        
+   between=ooo._XTRsubs(ooo.cixml(rowtypes[rt],'between',true),const_conds,const_conds_name);
+   hasbetween=!ooo.inoe(between);
+   if(hasbetween){betweenstep=ooo.xatt(rowtypes[rt].getElementsByTagName('between')[0],'step');if(ooo.inoe(betweenstep)){betweenstep=0;}else{betweenstep=parseInt(betweenstep);}if(betweenstep<1){betweenstep=1;}}
+   rbefore=ooo.sub(rbefore,'#ROWCOUNT#',rows.length.toLocaleString());
+   rafter=ooo.sub(rafter,'#ROWCOUNT#',rows.length.toLocaleString());
+   /*WRITE BEFORE*/htm2+=ooo._XTRsubs(rbefore,consts,consts_name);
+   //SINGLE ROW PLOT START ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   for(x=0;x<maxrows;x++){v=0;
+    /*vars*/for(v=0;v<xvars.length;v++){vars[v]=ooo._varpickup(xvars[v],rows[x],[const_conds,const_conds_name,consts,consts_name]);}
+    /*fixed vars(text, xml, innerxml, rowcount and  betweenrowcount)*/
+    vars[v]=ooo.xtext(rows[x],true);vars[v+1]=ooo.xml(rows[x],true);vars[v+2]=x;vars[v+3]=rows.length.toLocaleString();vars[v+4]=pagecount.toLocaleString();vars[v+5]=ooo.ixml(rows[x],true);
+    /*switches*/vins=v+6;var swflag=false;var matched=-1;
+    for(v=0;v<xswitches.length;v++){matched=-1;swflag=false;nn=xswitches[v].getElementsByTagName('match');s=ooo._XTRsubs(xswitchesv[v],vars,vars_name);vars[vins+v]='';
+	 if(ooo.xatt(xswitches[v],'compare')=='contains'){for(i=0;i<nn.length;i++){if(s.indexOf(ooo.xatt(nn[i],'value'))>-1){matched=i;i=1000;swflag=true;}}}
+	 else{for(i=0;i<nn.length;i++){if(s==ooo.xatt(nn[i],'value')){matched=i;i=1000;swflag=true;}}}
+	 if(!swflag){for(i=0;i<nn.length;i++){if(!ooo.inoe(ooo.xatt(nn[i],'default'))){matched=i;i=1000;}}}
+	 if(matched>-1){vars[vins+v]=ooo._MXTRsubs(ooo.ixml(nn[matched],true),[conds,conds_name,vars,vars_name,const_conds,const_conds_name],ooo.xatt(xswitches[v],'escape'));}}
+    /*inlines*/for(v=0;v<xins.length;v++){
+     s=ooo.xatt(xins[v],'tagname');prel=ooo.xatt(xins[v],'preload');vins=xvars.length+6+xswitches.length+v;
+     if(s=='#ELEMENT#'){tn=rows[x];}else if(s=='#DOCUMENT#'){tn=data;}else{tn=ooo.listonode(ooo.sel(s,rows[x]))}
+     tn1=$._syncrender(false,ooo.preloaded(prel),tn,'inline',outcodes);vars[vins]=tn1.html;outcodes=tn1.outcodes;}
+    /*FINALIZE VARS*/for(v=0;v<vars.length;v++){if(vars[v]==null){vars[v]='';}if(vars[v]=='undefined'){vars[v]='';}}
+    //Prepare conditions
+    for(v=0;v<xconds.length;v++){js=ooo._XTRsubs(conds_js[v],vars,vars_name);try{if(eval(js)){conds[v]=condsT[v];}else{conds[v]=condsF[v];}}catch(ex){conds[v]=condsE[v];}}
+    //Write start
+    htm2+=ooo._MXTRsubs(ooo.ixml(rowtypes[rt].getElementsByTagName('html')[0],true),[conds,conds_name,vars,vars_name,const_conds,const_conds_name,consts,consts_name])
+    if((x<maxrows-1)&&(hasbetween)&&(x==(betweenstep*(pagecount-2)))){s=ooo._XTRsubs(between,conds,conds_name);htm2+=ooo._XTRsubs(s,vars,vars_name);pagecount=pagecount+1;}
+     outcodes=uno.xml._chainload(rowtypes[rt],2,consts,consts_name,const_conds,const_conds_name,vars,vars_name,conds,conds_name,outcodes);
+   }htm2+=ooo._XTRsubs(rafter,consts,consts_name);}}}
+ /*CASEALLZERO*/if(ooo.inoe(htm2)){htm2=ooo._XTRsubs(ooo.ixml(template.getElementsByTagName('caseallzero')[0],true),const_conds,const_conds_name);}
+ /*MAINCONTENT*/html+=htm2;
+ /*AFTERALL*/html+=ooo._MXTRsubs(ooo.ixml(template.getElementsByTagName('afterall')[0],true),[const_conds,const_conds_name,consts,consts_name]);
+ //if(html.indexOf('#RESPONSEXML#')){html=ooo.sub(html,'#RESPONSEXML#',ooo.xml(data,false));}
+ /*RENDER-FILL*/if(!_mode){_mode='normal';}if(_mode!='inline'){if(target){ooo._rdrctrfill(target,html,_mode);}
+ /*RUN-OUTPUT-JS*/for(v=0;v<outcodes.length;v++){try{eval(outcodes[v]);}catch(ocex){ooo.err(ocex);}}outcodes=null;outcodes=new Array();}
+ /*CHAINLOAD*/try{uno.xml._chainload(template,1,consts,consts_name,const_conds,const_conds_name,false,false,false,false);}
+ /*RETURNS*/catch(fex){fex=null;}if(_mode=='inline'){return {html:html,outcodes:outcodes};}else{return html;}};
+ /* - ---------------------------------------------------------------------------------------- XTR ENGINE UTILS - */	
+ ooo._varpickup=function(tnode,node,subs){var v='';var exp=ooo.xatt(tnode,'tagname');
+if(ooo.inoe(exp)){v=''}else{exp=$._MXTRsubs(exp,subs);var mode=ooo.xatt(tnode,'pickup');if(ooo.inoe(mode)){mode='normal';}
+if(ooo.starts(exp,'#ELEMENT#')){v=ooo.ixml(node,true);}else if(ooo.starts(exp,'@')){v=ooo.xatt(node,exp.slice(1));}
+else{var xx=ooo.sel(exp,node);if(mode=='normal'){v=ooo.ixml(xx[0],true);}
+ else if(mode=='cdata'){v=ooo.ixml(xx[0],false);}else if(mode=='xpathresult'){v=xx}
+ else if(ooo.starts(mode,'csv')){var sep='!';if(mode.indexOf(':')>-1){sep=mode.split(':')[1]};var out='';var x;var o='';for(x=0;x<xx.length-1;x++){o=ooo.ixml(xx[x],true);if(o){out+=o+sep;}}o=ooo.ixml(xx[xx.length-1],true);if(o){out+=o;}v=out;}
+ else if(mode=='date'){var out=ooo.ixml(xx[0],true);var y=parseInt(out.substr(0,4));var m=parseInt(out.substr(4,2));var d=parseInt(out.substr(6,2));var h=parseInt(out.substr(8,2));var mm=parseInt(out.substr(12,2));var s=parseInt(out.substr(15,2));return new Date(y,m-1,d,h,mm,s);}
+ else{v=ooo.ixml(xx[0],true);}}}if(ooo.inoe(v)){v=ooo.xatt(tnode,'default');if(ooo.inoe(v)){return '';}}
+v=ooo._converts(v,ooo.xatt(tnode,'convert'));v=ooo.escape(v,ooo.xatt(tnode,'escape'));return v;};
+ ooo._converts=function(value,mode){try{if(value&&mode){if(mode=='host'){return ooo.sub(value,'#HOST#',ooo.host);}
+else if(mode=='friendlydate'){return uno.friendlydate(value);}
+else if(mode=='lower'){return value.toLowerCase();}else if(mode=='upper'){return value.toUpperCase();}
+else if(ooo.starts(mode,'globalize:')){var ss=mode.split(':');return Globalize.format(value,ss[1]);}
+else{var cd=mode+"(\'"+value.replace(/'/g,'\\\'')+'\');';return eval(cd);}}else{return value;}}catch(ex){return value;}};
+ ooo._rdrctrfill=function(target,htmltext,mode){
+if(target=='#NEW#'){uno.insert('supercontainer','div',['style','display:none'],false,htmltext);}
+ else{target=ooo.$$(target);
+  if(target.nodeName.toLowerCase()!='table'){
+   if(mode=='normal'){ooo.clearchilds(target);target.innerHTML=htmltext;}else{
+   var newelm=document.createElement('div');newelm.innerHTML=htmltext;
+   if(mode=='append'){newelm=target.appendChild(newelm);}
+   else if(mode=='insert'){newelm=target.insertBefore(newelm,target.firstChild);}
+ }}else{htmltext=ooo.sub(htmltext,'&amp;','&');htmltext=htmltext.replace(/&/g, '&amp;');
+   var newrows=ooo.parsexml('<?xml version="1.0" encoding="utf-8" ?><unontt>'+htmltext+'</unontt>');
+   var r=0;var rr=ooo.sel('//tr',newrows.documentElement);var rrr=[];var c;var cc;var ccc;
+   if(mode=='normal'){ooo.clearchilds(target.tBodies[0]);mode='append';}
+   if(mode=='appendatable'){for(r=1;r<rr.length;r++){cc=ooo.sel('td',rr[r]);rrr[r-1]=[];for(c=0;c<cc.length;c++){rrr[r-1][c]=ooo.ixml(cc[c]).replace(/&amp;/g,'&');}}jQuery(target).dataTable().fnAddData(rrr)}
+   if(mode=='append'){var pl=target.rows.length;for(r=0;r<rr.length;r++){cc=ooo.sel('td',rr[r]);rrr=target.insertRow(r+pl);for(c=0;c<cc.length;c++){ccc=rrr.insertCell(c);ccc.innerHTML=ooo.ixml(cc[c]).replace(/&amp;/g,'&');}}}
+   if(mode=='insert'){for(r=0;r<rr.length;r++){cc=ooo.sel('td',rr[r]);rrr=target.insertRow(r);for(c=0;c<cc.length;c++){ccc=rrr.insertCell(c);ccc.innerHTML=ooo.ixml(cc[c]).replace(/&amp;/g,'&');}}}
+}}};
  $._XTRsubs=function(v,vv,nn){if(this.inoe(v)){return '';}if(vv){for(var i=0;i<vv.length;i++){v=this.sub(v,nn[i],vv[i]);}}return v;};
+ $._MXTRsubs=function(v,subs,escape){if(this.inoe(v)){return '';}if(subs){var s;for(s=0;s<subs.length;s+=2){v=ooo._XTRsubs(v,subs[s],subs[s+1]);}}if(escape){v=ooo.escape(v,escape);}return v;};
  /* DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - DEFAULTS - */
  $.pagetarget='supercontainer';$.rendertimestep=100;
+
 })(ooo,window);
 
-uno={};
-uno.xml={};
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//------------------------   PP  UU  BB  LL  II  CC     II  NN  TT  EE  RR  FF  AA  CC  EE   ----------------------//
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//LOADER COMPONENT
-uno.xml.asyncload=function(url,onstep,onfinish,onerrorfinish,_form,_json){uno.xml._asyncload(url,onstep,onfinish,onerrorfinish,_form,_json);};
 
+uno={};uno.xml={};
 //RENDER COMPONENT
 uno.xml.tempsayok=false;
 uno.xml.sayok=function(url,_form,onfinish){uno.xml.tempsayok=onfinish;uno.xml.asyncload(url,false,uno.xml._sayokafter,uno.xml._sayokafter,_form);};
 uno.xml._sayokafter=function(req){uno.xml._okprocess(req);if(uno.xml.tempsayok){uno.xml.tempsayok();uno.xml.tempsayok=false;}};
 uno.xml.renderpage=function(dataurl,_form,_onfinish){uno.xml.asyncload(dataurl,false,uno.xml._renderpage,false,_form,_onfinish);};
 uno.xml.rendercontent=function(target,dataurl,_form,_onfinish,mode){var pmode='content';if(mode){pmode='control'+mode;}var pidx=uno.xml._fastinstance();uno.xml.processes[pidx]=new uno.xml.process(pmode,target,false,dataurl,_form,_onfinish);uno.xml.startprocess(pidx);};
-uno.xml.renderactb=function(target,dataurl,_form,_onfinish){var pidx=uno.xml._fastinstance();uno.xml.processes[pidx]=new uno.xml.process('actb',target,false,dataurl,_form,_onfinish);uno.xml.startprocess(pidx);};
-uno.xml.renderselect=function(target,dataurl,_form,_onfinish){var pidx=uno.xml._fastinstance();uno.xml.processes[pidx]=new uno.xml.process('select',target,false,dataurl,_form,_onfinish);uno.xml.startprocess(pidx);};
-uno.xml.rendercontrol=function(target,configurl,dataurl,_form,_onfinish,mode){
-	var pmode='control';if(mode){pmode='control'+mode;}var pidx=uno.xml._fastinstance();uno.xml.processes[pidx]=new uno.xml.process(pmode,target,configurl,dataurl,_form,_onfinish);uno.xml.startprocess(pidx);return false;};
-uno.xml.preload=function(url,_onfinish){var pidx=uno.xml._fastinstance();uno.xml.processes[pidx]=new uno.xml.process('preload',false,url,false,false,_onfinish); uno.xml.startprocess(pidx);};
-uno.xml.preloaded=function(name){name=ooo.sub(name,'#HOST#',ooo.host);for(var i=0;i<uno.xml._preloadedn.length;i++){if(uno.xml._preloadedn[i]==name){return uno.xml._preloaded[i];}}return false;};
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//----------------------------------------   XX MM LL - LL OO AA DD EE RR   ---------------------------------------//
-/////////////////////////////////////////////////////////////////////////////////////////////private implementation//
-//---------------------------------------------- ASYNCRONOUS XML LOAD ---------------------------------------------//
-uno.xml._asyncload=function(url,onstep,onfinish,onerrorfinish,_elm,isjson){_elm=ooo.$$(_elm);url=ooo.sub(url,'#HOST#',ooo.host);
- var idx=uno.xml._asyncjobs.length;uno.xml._asyncjobs[idx]=new uno.xml._asyncjob(url,onstep,onfinish,onerrorfinish);
- //var isjson=false;
- var hasfile=false;
- if(!_elm){
-  if(isjson){//JSON GET
-   ooo.importscript(uno.xml._asyncjobs[idx].url+'&callback='+encodeURIComponent('uno.xml._ppjson('+idx+',data);'));
-  }else{//XMLHTTP GET
-   uno.xml._asyncjobs[idx].req=uno.xml._createxmlreq();uno.xml._asyncjobs[idx].req.onreadystatechange=function(){eval('uno.xml._ppasync('+idx+')');};uno.xml._asyncjobs[idx].req.open("GET",uno.xml._asyncjobs[idx].url,true);uno.xml._asyncjobs[idx].req.send('');}        
- }else{
-  if(_elm.nodeName.toLowerCase()==='input'){var onode=ooo.$$(_elm);var nnode=onode.cloneNode(true);onode.parentNode.replaceChild(nnode,onode);var tform=uno.upload._createform();tform.appendChild(onode);document.body.appendChild(tform);elm=tform;}
-  if(_elm.nodeName.toLowerCase()==='textarea'){var onode=ooo.$$(_elm);var nnode=onode.cloneNode(true);onode.parentNode.replaceChild(nnode,onode);var tform=uno.upload._createform();tform.appendChild(onode);document.body.appendChild(tform);elm=tform;}
-  var i;var v;var ii=_elm.getElementsByTagName('input');for(i=0;i<ii.length;i++){if(ii[i].type=='file'){if(!ooo.inoe(ii[i].value)){hasfile=true;i=10000;}}}
-  if(!hasfile){var iit=_elm.getElementsByTagName('textarea');for(var xxxx=0;xxxx<iit.length;xxxx++){if(!ooo.inoe(uno.cutrim(uno.getvalue(iit[xxxx])),' ')){hasfile=true;}}}
-  if(!hasfile){
-   if(isjson){//JSON POST (simulation)
-    if(url.indexOf('=')){uno.xml._asyncjobs[idx].url+='&';}else if(!ooo.ends('?')){uno.xml._asyncjobs[idx].url+='?';}
-    var s=uno.xml._asyncjobs[idx].url+'&data=x$._j'+idx+';ondata='+encodeURIComponent('uno.xml._ppjson('+idx+',x$._j);');
-    s=s+'&'+uno.xml._serialize(_elm,true);
-    if(s.length>2048){throw new Error('Data is too long for a json request');}
-    else{ooo.importscript(s);}
-   }else{//XMLHTTP POST
-    //if(isIE){var frameid=uno.upload.form(url,_elm,false,uno.xml._ppasyncframe);var idxx=uno.xml._framefinishes.length;uno.xml._framefinishes[idxx]=new uno.xml._framefinish(frameid,onfinish);};
-    uno.xml._asyncjobs[idx].req=uno.xml._createxmlreq();
-    uno.xml._asyncjobs[idx].req.onreadystatechange=function(){eval('uno.xml._ppasync('+idx+')');};
-    uno.xml._asyncjobs[idx].req.open("POST",uno.xml._asyncjobs[idx].url,true);
-    uno.xml._asyncjobs[idx].req.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    uno.xml._asyncjobs[idx].req.send(jQuery(_elm).serialize());
-  }}else{
-   if(isjson){throw new Error('Cannot send json requests including files.');}
-   else{//FRAME TECHNIQUE
-    if(!uno.upload){alert('Frame technique requires uno.upload.js');}
-    else{var frameid=uno.upload.form(url,_elm,false,uno.xml._ppasyncframe);var idxx=uno.xml._framefinishes.length;uno.xml._framefinishes[idxx]=new uno.xml._framefinish(frameid,onfinish);}
-}}}};
-uno.xml._createxmlreq=function(){var rq=false;if(window.XMLHttpRequest&&!(window.ActiveXObject)){try{rq=new XMLHttpRequest();}catch(exk){rq=false;}}else if(window.ActiveXObject){try{rq=new ActiveXObject("Msxml2.XMLHTTP");}catch(ex){try{rq=new ActiveXObject("Microsoft.XMLHTTP");}catch(exx){rq=false;}}}if(!rq){ooo.err('This browser is neither w3c or mozilla compatible*[2008], uno.xml javascript framework will not work.');}return rq;};
 uno.xml._collect=function(a,f){var n=[];for(var i=0;i<a.length;i++){var v=f(a[i]);if(v!=null){n.push(v);}}return n;};
 uno.xml._serialize=function(f){var g=function(n){return f.getElementsByTagName(n)};var nv=function(e){if(e.name)return encodeURIComponent(e.name)+'='+encodeURIComponent(e.value);else return ''};var c1=function(i){if((i.type!='radio'&&i.type!='checkbox')||i.checked)return nv(i)};var i=uno.xml._collect(g('input'),c1);var s=uno.xml._collect(g('select'),nv);var t=uno.xml._collect(g('textarea'),nv);return i.concat(s).concat(t).join('&');};
-// MEMORY STRUCTURE FOR ASYC JOBS 
-uno.xml._asyncjobs=new Array();
-uno.xml._asyncjob=function(_url,_onstep,_onfinish,_onerrorfinish){this.processed=false;this.req=false;this.url=_url;this.onstep=_onstep;this.onfinish=_onfinish;this.onerrorfinish=_onerrorfinish;};
-//- MORE MEMORY STRUCTURE FOR FRAME ASYC JOBS
-uno.xml._framefinishes=new Array();uno.xml._framefinish=function(_frameid,_onfinish){this.frameid=_frameid;this.onfinish=_onfinish;};
-uno.xml._getframefinish=function(frameid){for(var i=0;i<uno.xml._framefinishes.length;i++){if(uno.xml._framefinishes[i].frameid==frameid){return uno.xml._framefinishes[i].onfinish;}}return false;};
-//- FAKE CLASS FOR MISSING HEADER AND FRAME OR JSON PARSING 
-uno.xml._fakerq=function(xmlstring){this.readyState=4;this.status=200;this.statusText='OK';this.responseText=xmlstring;try{this.responseXML=ooo.parsexml(xmlstring);}catch(ez){this.responseXML=false;}};
-//------------------------------------------ ASYNCRONOUS XML POSTPROCESSING ---------------------------------------//
-uno.xml._ppasync=function(idx){if(uno.xml._asyncjobs[idx].req.readyState==4){if(uno.xml._asyncjobs[idx].req.status==200){//If "OK"
-   if(uno.xml._asyncjobs[idx].processed==false){uno.xml._asyncjobs[idx].processed=true;var text=uno.xml._asyncjobs[idx].req.responseText;
-   delete uno.xml._asyncjobs[idx].req;uno.xml._asyncjobs[idx].req=new uno.xml._fakerq(text);
-   try{uno.xml._asyncjobs[idx].onfinish(uno.xml._asyncjobs[idx].req);}
-   catch(exx){var msg='Terminating the XMLHttpRequest Async Job for the url '+uno.xml._asyncjobs[idx].url+' correctly, invoking the onfinish handler : \n';msg+=exx.message;msg+='\n*onfinish handlers must ALWAYS be in the form of onfinish(req), where req is an objet of type XMLHttpRequest.\nthe uno system will make it look like a regular xmlhttprequest with responseText and responseXML properties looking normal also for json and frames.';ooo.err(msg,exx);}
-  }else{//If NOT "OK"
-    if(uno.xml._asyncjobs[idx].onfinish){uno.xml._invoker(uno.xml._asyncjobs[idx].onfinish,uno.xml._asyncjobs[idx].req,'onfinish','Terminating the XMLHttpRequest Async Job with errors, invoking the onfinish handler anyway.',uno.xml._asyncjobs[idx].url);}
-    else{ooo.err('Terminating the XMLHttpRequest Async Job for the url '+uno.xml._asyncjobs[idx].url+' with an error, status value : '+uno.xml._asyncjobs[idx].req.status);}
-}}}else{//If req do not show "loaded"
- try{uno.xml._asyncjobs[idx].onstep(uno.xml._asyncjobs[idx].req);}
- catch(exx){var msgg='Stepping the XMLHttpRequest Async Job for the url '+uno.xml._asyncjobs[idx].url+' correctly, invoking the onstep handler : \n';msgg+=exx.message;msg+='\n*onstep handlers must ALWAYS be in the form of onfinish(req), where req is an objet of type XMLHttpRequest.\nthe uno system will make it look like a regular xmlhttprequest with responseText and responseXML properties looking normal also for json and frames.';
-}}};
-uno.xml._ppasyncframe=function(frameid,doc){
-    var idx=uno.xml._asyncjobs.length;
-    uno.xml._asyncjobs[idx]=new uno.xml._asyncjob('',false,uno.xml._getframefinish(frameid),false);
-    var xmlstring=ooo.xml(doc.childNodes[0],false);
-    if(isIE){if(ooo.starts(xmlstring,'<HTML>')){xmlstring=doc.childNodes[0].innerText;xmlstring=ooo.sub(xmlstring,'<?xml version="1.0" encoding="utf-8" ?>','');var i=0;for(i=0;i<1000;i++){if(ooo.starts(xmlstring,'<')){i=1001;}else{xmlstring=xmlstring.slice(1);}}xmlstring=ooo.sub(xmlstring,'- <','<');}}
-    uno.xml._asyncjobs[idx].req=new uno.xml._fakerq(xmlstring);uno.xml._ppasync(idx);};
-uno.xml._ppjson=function(idx,data){data=ooo.sub(data,'<?xml version="1.0" encoding="utf-8" ?>','');uno.xml._asyncjobs[idx].req=new uno.xml._fakerq(data);uno.xml._postprocessasync(idx);};
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //----------------------------------------   XX MM LL - RR EE NN DD EE RR   ---------------------------------------//
 /////////////////////////////////////////////////////////////////////////////////////////////private implementation//
-uno.xml._preloaded=new Array();uno.xml._preloadedn=new Array();
-uno.xml._preload=function(pidx,req){var pridx=uno.xml._preloaded.length;uno.xml._preloadedn[pridx]=uno.xml.processes[pidx].configurl;uno.xml._preloaded[pridx]=req.responseXML.documentElement;
-   //INCOMPATIBILE WITH AUTOMAGIC PRELOAD   if(uno.xml.processes[pidx].ff){uno.xml.processes[pidx].ff(req);}
-};
-uno.xml._fastinstance=function(){var pidx=uno.xml.processes.length;uno.xml.processes[pidx]=null;return pidx;};
-//----------------------------------------------- XML RENDER PROCESSES ----------------(advanced loading sequence)-// 
-uno.xml.processes=new Array(); uno.xml._h1s=new Array(); uno.xml._h2s=new Array();
-//uno.xml.process=function(ptype,elm,configurl,dataurl,pp,ff){this.ptype=ptype;this.elm=elm;if(!ptype=='preload'){this.pp=$(pp);}else{this.pp=pp;}this.configurl=ooo.sub(configurl,'#HOST#','http://'+location.hostname);this.dataurl=ooo.sub(dataurl,'#HOST#','http://'+location.hostname);this.ff=ff;this.config=null;this.data=null;};
-uno.xml.process=function(ptype,elm,configurl,dataurl,pp,ff){this.ptype=ptype;this.elm=elm;if(!ptype=='preload'){this.pp=ooo.$$(pp);}else{this.pp=pp;}this.configurl=configurl;this.dataurl=dataurl;this.ff=ff;this.config=null;this.data=null;};
-uno.xml.startprocess=function(pidx){uno.xml._h1s[pidx]=function(node){uno.xml.continueprocess(pidx.valueOf(),node);}; uno.xml._h2s[pidx]=function(node){uno.xml.finishprocess(pidx.valueOf(),node);};
- if(uno.xml.processes[pidx].ptype=='preload'){uno.xml.asyncload(uno.xml.processes[pidx].configurl,false,uno.xml._h1s[pidx],false,false);}
- else{if((uno.xml.processes[pidx].ptype!='actb')&&(uno.xml.processes[pidx].ptype!='select')){if(uno.updatinghtml){ooo.clearchilds(uno.xml.processes[pidx].elm);}}
-  if(ooo.starts(uno.xml.processes[pidx].ptype,'content')){uno.xml.asyncload(uno.xml.processes[pidx].dataurl,false,uno.xml._h1s[pidx],false,uno.xml.processes[pidx].pp);}
-  else if(uno.xml.processes[pidx].ptype=='actb'){uno.xml.asyncload(uno.xml.processes[pidx].dataurl,false,uno.xml._h1s[pidx],false,uno.xml.processes[pidx].pp);}
-  else if(uno.xml.processes[pidx].ptype=='select'){uno.xml.asyncload(uno.xml.processes[pidx].dataurl,false,uno.xml._h1s[pidx],false,uno.xml.processes[pidx].pp);}
-  else{uno.xml.asyncload(uno.xml.processes[pidx].configurl,false,uno.xml._h1s[pidx],false,false);}}
-};
-uno.xml.continueprocess=function(pidx,req){
-    if(ooo.starts(uno.xml.processes[pidx].ptype,'control')){
-        uno.xml.processes[pidx].config=req.responseXML.documentElement;
-        //AUTOMAGIC PRELOAD RETRIVAL
-        var ins=ooo.sel('//inline',uno.xml.processes[pidx].config);var flag=false;if(ins){var prel;for(var xi=0;xi<ins.length;xi++){prel=ooo.xatt(ins[xi],'preload');if(!uno.xml.preloaded(prel)){flag=true;break;}}}
-        if(flag){uno.xml._h1s[pidx]=function(node){uno.xml._afterpreloadretrieval(pidx.valueOf());};uno.xml._afterpreloadretrieval(pidx);}
-        else{uno.xml.asyncload(uno.xml.processes[pidx].dataurl,false,uno.xml._h2s[pidx],false,uno.xml.processes[pidx].pp);}}
-    else{if(uno.xml.processes[pidx].ptype=='preload'){uno.xml._preload(pidx,req);}
-        else if(ooo.starts(uno.xml.processes[pidx].ptype,'content')){uno.xml._rendercontent(pidx,req);}
-        else if(uno.xml.processes[pidx].ptype=='actb'){uno.xml._renderactb(pidx,req);}
-        else if(uno.xml.processes[pidx].ptype=='select'){uno.xml._renderselect(pidx,req);}
-        else{throw new Error('Unsupported render entity :'+uno.xml.processes[pidx].ptype);}
-        if(uno.xml.processes[pidx].ff){uno.xml.processes[pidx].ff(req);} 
-}};
-//AUTOMAGICALLY MANAGES PRELOADS - Only declare when used in controls - no preload instruction - preloaded on first need.
-uno.xml._afterpreloadretrieval=function(pidx){var prel;var ins=ooo.sel('//inline',uno.xml.processes[pidx].config);var flag=true;for(var xi=0;xi<ins.length;xi++){prel=ooo.xatt(ins[xi],'preload');prel=ooo.sub(prel,'#HOST#',ooo.host);if(!uno.xml.preloaded(prel)){flag=false;break;};}if(flag){uno.xml.asyncload(uno.xml.processes[pidx].dataurl,false,uno.xml._h2s[pidx],false,uno.xml.processes[pidx].pp);}else{uno.xml.preload(prel,uno.xml._h1s[pidx]);}};
-uno.xml.finishprocess=function(pidx,req){var execute=true;/*execute=uno.xml._okprocess(req);*/if(execute){
- /*try{*/
- var p=uno.xml.processes[pidx];if(ooo.starts(p.ptype,'control')){p.data=req.responseXML.documentElement;uno.xml._rdrcontrol(p.elm,p.config,p.data,p.configurl,p.dataurl,p.ptype,pidx);if(uno.xml.processes[pidx].ff){uno.xml.processes[pidx].ff(req);}}}
- /*catch(ex){ooo.err(ex.message+'\nResponse was :\n'+req.responseText);}}*/};
-//--------------------------------------- SELECT - ACTB RENDER ROUTINE ----------------------------(simple handler)-//
-uno.xml._actbs=new Array();uno.xml._actbn=new Array();uno.xml._actbt=new Array();uno.xml._actbv=new Array();
-uno.xml._renderactb=function(pidx,req){var data=req.responseXML.documentElement;var p=uno.xml.processes[pidx];p.elm=ooo.$$(p.elm);var tt=new Array();var vv=new Array();
- var xx=data.getElementsByTagName('item');for(var i=0;i<xx.length;i++){tt[tt.length]=ooo.cixml(xx[i],'name',true);vv[vv.length]=ooo.cixml(xx[i],'value',true);}
- var iname=p.elm.name;p.elm.name='ex'+iname;var iiid=p.elm.id;p.elm.id='ex'+iname;
- var x=document.createElement('input');x.setAttribute('type','hidden');x.setAttribute('name',iname);x.id=iiid;p.elm.parentNode.appendChild(x);
- uno.xml._actbt[uno.xml._actbt.length]=tt;uno.xml._actbv[uno.xml._actbv.length]=vv;
- uno.xml._actbs[uno.xml._actbs.length]=new actb(ooo.$$(p.elm),uno.xml._actbt[uno.xml._actbt.length-1],iiid,uno.xml._actbchange);uno.xml._actbn[uno.xml._actbn.length]=iname;};
-uno.xml._actbchange=function(elmid,value){var i;var v;
- for(i=0;i<uno.xml._actbn.length;i++){if(uno.xml._actbn[i]==elmid){
- for(v=0;v<uno.xml._actbt[i].length;v++){if(uno.xml._actbt[i][v]==value){ooo.$$(elmid).value=uno.xml._actbv[i][v];return false;}}}}};
-uno.xml._renderselect=function(pidx,req){var data=req.responseXML.documentElement;var p=uno.xml.processes[pidx];p.elm=ooo.$$(p.elm);var vv=false;if(ooo.inoe(p.elm.getElementsByTagName('option')[0].value)){ooo.clearchilds(p.elm);vv=true;}var xx=data.getElementsByTagName('item');var o;for(var i=0;i<xx.length;i++){o=document.createElement('option');o.innerHTML=ooo.cixml(xx[i],'name',true);o.value=ooo.cixml(xx[i],'value',true);if(vv){if(i==0){o.setAttribute('selected','selected');}}p.elm.appendChild(o);}};
 //----------------------------------------------- OK PROCESS ROUTINE ----------------------------------------------//
 uno.xml._okprocess=function(req){var e;var ok='ok';var msg='';var oo=null;var ts='';var ts2='';
  try{ok=req.responseXML.documentElement.getElementsByTagName('ok')[0].childNodes[0].nodeValue;}catch(exxx){ok='ok';}
@@ -286,159 +291,6 @@ uno.xml._rendercontent=function(pidx,req){var data=uno.xml._preloadntt(req.respo
   uno.xml._chainload(data,0,false,false,false,false,false,false,false,false);
  }catch(exxz){throw exxz;}
 if(written==false){p.elm.innerHTML=req.responseText;}};
-//-------------------------------------------------------------------- CONTROL RENDER ROUTINE ----------------------------------------------------------------------//
-uno.xml._rdrcontrol=function(target,template,data,_templateurl,_dataurl,ptype,pidx){var mode='normal';if(ooo.ends(ptype,'append')){mode='append';}if(ooo.ends(ptype,'datable')){mode='appendatable';}if(ooo.ends(ptype,'insert')){mode='insert';} uno.xml._rendercontrol(target,template,data,mode,false,pidx);};
-//-----------------------------------------------------------------------------------------------------------------
-uno.xml._rendercontrol=function(target,template,data,_mode,_outcodes,pidx){if(!data){if(target){return null;}else{return '';}}template=uno.xml._preloadntt(template,false,pidx);
- var rt=0;var x=0;var v=0;var i=0;var s='';var vins;var prel;var js='';var nn=new Array();var tn='';var tn1=null;var tn2=null;
- var consts=new Array();var consts_name=new Array();
- //Prepare constants
- var xconsts=ooo.sel('//constant',template);
- for(v=0;v<xconsts.length;v++){s=ooo.xatt(xconsts[v],'tagname');
- consts[v]=uno.xml._varpickup(s,data,ooo.xatt(xconsts[v],'pickup'));
- //if(ooo.starts(s,'/')){consts[v]=ooo.ixml(ooo.sel(s,data)[0],true);}else if(ooo.starts(s,'@')){consts[v]=data.getAttribute(s.slice(1));}else{consts[v]=ooo.ixml(data.getElementsByTagName(s)[0],true);}
- consts_name[v]=ooo.xatt(xconsts[v],'substitution');consts[v]=ooo.escape(consts[v],ooo.xatt(xconsts[v],'escape'));
- if(consts[v]==null){consts[v]='';}}
- //v+=1;consts_name[v]='#DATE.NOW#';consts[v]=(new Date().toLocaleString()); 
- //Prepare and plot constant javascripts;
- nn=ooo.sel('//constantjavascript',template);
- for(v=0;v<nn.length;v++){tn=ooo.xatt(nn[v],'substitution');
-  js=ooo.ixml(nn[v],true);js=ooo._XTRsubs(js,consts,consts_name);
-  consts[consts.length]=eval(js);consts[consts.length-1]=ooo.escape(consts[consts.length-1],ooo.xatt(nn[v],'escape'));consts_name[consts_name.length]=tn;}
- //Prepare and plot constant conditions;
- var const_xconds=null;var const_conds=new Array();var const_conds_name=new Array();
- const_xconds=template.getElementsByTagName('constantcondition');
- for(v=0;v<const_xconds.length;v++){
-  const_conds_name[v]=ooo.xatt(const_xconds[v],'substitution');
-  js=ooo.cixml(const_xconds[v],'js',true);js=ooo._XTRsubs(js,consts,consts_name);
-  try{if(eval(js)){const_conds[v]=ooo.cixml(const_xconds[v],'true',true);}
-  else{const_conds[v]=ooo.cixml(const_xconds[v],'false',true);const_conds[v]=ooo.escape(const_conds[v],ooo.xatt(const_xconds[v],'escape'));}}catch(jsex){
-	  const_conds[v]=ooo.cixml(const_xconds[v],'error',true);const_conds[v]=ooo.escape(const_conds[v],ooo.xatt(const_xconds[v],'escape'));}}
- //Start Writing
- var html=ooo.sel('//title',template);for(e=0;e<html.length;e++){var v=ooo._XTRsubs(ooo._XTRsubs(ooo.ixml(html[0],true),const_conds,const_conds_name),consts,consts_name);document.title=v;}
- s=ooo.cixml(template,'beforeall',true);s=ooo._XTRsubs(s,const_conds,const_conds_name);
- html=ooo._XTRsubs(s,consts,consts_name);
- //Fetch row types
- var rowtypes=ooo.sel('//rowtype',template);
- var xvars=null;var xins=null;var vars=new Array();var vars_name=new Array();
- var rows=null;var rbefore='';var rafter='';var between='';var hasbetween=true;var betweenstep;var pagecount;
- var xconds=null;var conds=new Array();var condsE=new Array();var condsT=new Array();var condsF=new Array();var conds_name=new Array();var conds_js=new Array();
- var xswitches=null;var xswitchesv=new Array();
- //Write row types 
- var ddoc=ooo.getdoc(data);
- var htm2='';var outcodes=null;if(_outcodes){outcodes=_outcodes;}else{outcodes=new Array();}var maxrows=-1;var minrows=0;
- for(rt=0;rt<rowtypes.length;rt++){
-  //Fetch ROWS
-  s=ooo.xatt(rowtypes[rt],'tagname');
-  if(s=="#DOCUMENT#"){rows=new Array();rows[0]=data;}else{s=ooo._XTRsubs(s,const_conds,const_conds_name);s=ooo._XTRsubs(s,consts,consts_name);rows=ooo.sel(s,data,ddoc);}
-  maxrows=ooo.xatt(rowtypes[rt],'max');if(ooo.inoe(maxrows)){maxrows=rows.length;}else{maxrows=parseInt(maxrows);}  
-  minrows=ooo.xatt(rowtypes[rt],'min');if(ooo.inoe(minrows)){minrows=0;}else{minrows=parseInt(minrows);}
-  //If rowtype applies
-  if(rows.length>=minrows){
-  //Case zero rows
-  if(rows.length==0){htm2+=ooo._XTRsubs(ooo.cixml(rowtypes[rt],'casezero',true),consts,consts_name);}
-  //ROWTYPE FETCHES --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  else{if(rows.length<maxrows){maxrows=rows.length;}pagecount=2;
-   //Fetch variables
-   vars=null;vars=new Array();vars_name=null;vars_name=new Array();
-   xvars=rowtypes[rt].getElementsByTagName('variable');for(v=0;v<xvars.length;v++){vars_name[v]=ooo.xatt(xvars[v],'substitution');vars[v]='';}
-   //Fetch static variables
-   v=vars_name.length;vars_name[v]='#TEXT#';vars[v]='';v=vars_name.length;vars_name[v]='#XML#';vars[v]='';
-   v=vars_name.length;vars_name[v]='#ROWIDX#';vars[v]='';v=vars_name.length;vars_name[v]='#ROWCOUNT#';vars[v]='';
-   v=vars_name.length;vars_name[v]='#PAGECOUNT#';vars[v]='';v=vars_name.length;vars_name[v]='#INNERXML#';vars[v]='';
-   //Fetch switches, inlines, conditions.
-   xswitches=rowtypes[rt].getElementsByTagName('switch');for(v=0;v<xswitches.length;v++){vins=vars_name.length;vars_name[vins]=ooo.xatt(xswitches[v],'substitution');xswitchesv[v]=ooo.xatt(xswitches[v],'value');}
-   xins=rowtypes[rt].getElementsByTagName('inline');for(v=0;v<xins.length;v++){vins=vars_name.length;vars_name[vins]=ooo.xatt(xins[v],'substitution');}
-   xconds=rowtypes[rt].getElementsByTagName('condition');
-   for(v=0;v<xconds.length;v++){
-   conds_name[v]=ooo.xatt(xconds[v],'substitution');conds_js[v]=ooo.cixml(xconds[v],'js',true);
-   conds_js[v]=ooo._XTRsubs(conds_js[v],const_conds,const_conds_name,true);conds_js[v]=ooo._XTRsubs(conds_js[v],consts,consts_name,true);
-   condsE[v]=ooo.cixml(xconds[v],'error',true);if(condsE[v]==null){condsE[v]='';}condsT[v]=ooo.cixml(xconds[v],'true',true);if(condsT[v]==null){condsT[v]='';}condsF[v]=ooo.cixml(xconds[v],'false',true);if(condsF[v]==null){condsF[v]='';}}
-    //Fetch rowtype before - after and between.
-   rbefore=ooo.cixml(rowtypes[rt],'before',true);rbefore=ooo._XTRsubs(rbefore,const_conds,const_conds_name);
-   rafter=ooo.cixml(rowtypes[rt],'after',true);rafter=ooo._XTRsubs(rafter,const_conds,const_conds_name);        
-   between=ooo.cixml(rowtypes[rt],'between',true);between=ooo._XTRsubs(between,const_conds,const_conds_name);
-   hasbetween=!ooo.inoe(between);
-   if(hasbetween){betweenstep=ooo.xatt(rowtypes[rt].getElementsByTagName('between')[0],'step');if(ooo.inoe(betweenstep)){betweenstep=0;}else{betweenstep=parseInt(betweenstep);}if(betweenstep<1){betweenstep=1;}}
-   rbefore=ooo.sub(rbefore,'#ROWCOUNT#',rows.length.toLocaleString());rafter=ooo.sub(rafter,'#ROWCOUNT#',rows.length.toLocaleString());
-   htm2+=ooo._XTRsubs(rbefore,consts,consts_name);
-   //SINGLE ROW PROCESSING START ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   for(x=0;x<maxrows;x++){v=0;
-    //Prepare variables
-    for(v=0;v<xvars.length;v++){s=ooo.xatt(xvars[v],'tagname');s=ooo._XTRsubs(s,const_conds,const_conds_name,true);s=ooo._XTRsubs(s,consts,consts_name,true);
-        vars[v]=uno.xml._varpickup(s,rows[x],ooo.xatt(xvars[v],'pickup'));vars[v]=uno.xml._converts(vars[v],ooo.xatt(xvars[v],'convert'));vars[v]=ooo.escape(vars[v],ooo.xatt(xvars[v],'escape'));
-    if(ooo.inoe(vars[v])){s=ooo.xatt(xvars[v],'default');if(!ooo.inoe(s)){vars[v]=s}}}
-    //Prepare fixed variables (text, xml, innerxml, rowcount and  betweenrowcount)
-    vars[v]=ooo.xtext(rows[x],true);vars[v+1]=ooo.xml(rows[x],true);vars[v+2]=x;vars[v+3]=rows.length.toLocaleString();vars[v+4]=pagecount.toLocaleString();vars[v+5]=ooo.ixml(rows[x],true);
-    //Prepare switches
-    vins=v+6;var swflag=false;
-    for(v=0;v<xswitches.length;v++){swflag=false;nn=xswitches[v].getElementsByTagName('match');s=xswitchesv[v];s=ooo._XTRsubs(s,vars,vars_name);vars[vins+v]='';
-	 if(ooo.xatt(xswitches[v],'compare')=='contains'){for(i=0;i<nn.length;i++){if(s.indexOf(ooo.xatt(nn[i],'value'))>-1){
-s=ooo.ixml(nn[i],true);s=ooo._XTRsubs(s,conds,conds_name);s=ooo._XTRsubs(s,vars,vars_name);s=ooo._XTRsubs(s,const_conds,const_conds_name);
-s=ooo.escape(s,ooo.xatt(xswitches[v],'escape'));vars[vins+v]=s;i=100;swflag=true;}
-	 }}else{for(i=0;i<nn.length;i++){if(s==ooo.xatt(nn[i],'value')){
-s=ooo.ixml(nn[i],true);s=ooo._XTRsubs(s,conds,conds_name);s=ooo._XTRsubs(s,vars,vars_name);s=ooo._XTRsubs(s,const_conds,const_conds_name);
-s=ooo.escape(s,ooo.xatt(xswitches[v],'escape'));vars[vins+v]=s;i=100;swflag=true;}}}
-	if(!swflag){for(i=0;i<nn.length;i++){if(ooo.xatt(nn[i],'default')=='true'){s=ooo.ixml(nn[i],true);s=ooo._XTRsubs(s,conds,conds_name);s=ooo._XTRsubs(s,vars,vars_name);s=ooo._XTRsubs(s,const_conds,const_conds_name);s=ooo.escape(s,ooo.xatt(xswitches[v],'escape'));vars[vins+v]=s;}}}}
-    for(v=0;v<vars.length;v++){if(vars[v]==null){vars[v]='';}if(vars[v]=='undefined'){vars[v]='';}}
-    //Prepare inlines
-    for(v=0;v<xins.length;v++){
-     s=ooo.xatt(xins[v],'tagname');prel=ooo.xatt(xins[v],'preload');vins=xvars.length+6+v+xswitches.length;
-     if(s=='#ELEMENT#'){tn=rows[x];}else if(s=='#DOCUMENT#'){tn=data;}else{tn=ooo.listonode(ooo.sel(s,rows[x]))}
-     tn1=uno.xml._rendercontrol(false,uno.xml.preloaded(prel),tn,'inline',outcodes,pidx);vars[vins]=tn1.html;outcodes=tn1.outcodes;}
-    //Prepare conditions
-    for(v=0;v<xconds.length;v++){js=ooo._XTRsubs(conds_js[v],vars,vars_name,true);try{if(eval(js)){conds[v]=condsT[v];}else{conds[v]=condsF[v];}}catch(ex){conds[v]=condsE[v];}}
-    //Write start
-    s=ooo.ixml(rowtypes[rt].getElementsByTagName('html')[0],true);
-    s=ooo._XTRsubs(s,conds,conds_name);s=ooo._XTRsubs(s,vars,vars_name);s=ooo._XTRsubs(s,const_conds,const_conds_name);
-    htm2+=ooo._XTRsubs(s,consts,consts_name);
-    if((x<maxrows-1)&&(hasbetween)&&(x==(betweenstep*(pagecount-2)))){s=ooo._XTRsubs(between,conds,conds_name);htm2+=ooo._XTRsubs(s,vars,vars_name);pagecount=pagecount+1;}
-     outcodes=uno.xml._chainload(rowtypes[rt],2,consts,consts_name,const_conds,const_conds_name,vars,vars_name,conds,conds_name,outcodes);
-   }htm2+=ooo._XTRsubs(rafter,consts,consts_name);}}}
- //CASE ALL ZERO
- if(ooo.inoe(htm2)){htm2=ooo.ixml(template.getElementsByTagName('caseallzero')[0],true);htm2=ooo._XTRsubs(htm2,const_conds,const_conds_name);}
- html+=htm2;
- s=ooo.ixml(template.getElementsByTagName('afterall')[0],true);s=ooo._XTRsubs(s,const_conds,const_conds_name);
- html+=ooo._XTRsubs(s,consts,consts_name);
- if(html.indexOf('#RESPONSEXML#')){html=ooo.sub(html,'#RESPONSEXML#',ooo.xml(data,false));}
- if(!_mode){_mode='normal';}if(_mode!='inline'){
-  if(target){uno.xml._rdrctrfill(target,html,_mode);}
- if(uno.debug){alert(outcodes.join(','))}
- for(v=0;v<outcodes.length;v++){try{eval(outcodes[v]);}catch(ocex){ooo.err(ocex);}}outcodes=null;outcodes=new Array();}
- try{uno.xml._chainload(template,1,consts,consts_name,const_conds,const_conds_name,false,false,false,false);}
- catch(fex){fex=null;}if(_mode=='inline'){return {html:html,outcodes:outcodes};}else{return html;}};
-uno.xml._rdrctrfill=function(target,htmltext,mode){
-    if(target=='#NEW#'){uno.insert('supercontainer','div',['style','display:none'],false,htmltext);}else{
- target=ooo.$$(target);
- if(target.nodeName.toLowerCase()!='table'){
-    if(mode=='normal'){ooo.clearchilds(target);target.innerHTML=htmltext;}else{
-    var newelm=document.createElement('div');newelm.innerHTML=htmltext;
-    if(mode=='append'){newelm=target.appendChild(newelm);}
-    else if(mode=='insert'){newelm=target.insertBefore(newelm,target.firstChild);}
- }}else{htmltext=ooo.sub(htmltext,'&amp;','&');htmltext=htmltext.replace(/&/g, '&amp;');
-    var newrows=ooo.parsexml('<?xml version="1.0" encoding="utf-8" ?><unontt>'+htmltext+'</unontt>');
-    var r=0;var rr=ooo.sel('//tr',newrows.documentElement);var rrr=[];var c;var cc;var ccc;
-    if(mode=='normal'){ooo.clearchilds(target.tBodies[0]);mode='append';}
-    if(mode=='appendatable'){for(r=1;r<rr.length;r++){cc=ooo.sel('td',rr[r]);rrr[r-1]=[];for(c=0;c<cc.length;c++){rrr[r-1][c]=ooo.ixml(cc[c]).replace(/&amp;/g,'&');}}jQuery(target).dataTable().fnAddData(rrr)}
-    if(mode=='append'){var pl=target.rows.length;for(r=0;r<rr.length;r++){cc=ooo.sel('td',rr[r]);rrr=target.insertRow(r+pl);for(c=0;c<cc.length;c++){ccc=rrr.insertCell(c);ccc.innerHTML=ooo.ixml(cc[c]).replace(/&amp;/g,'&');}}}
-    if(mode=='insert'){for(r=0;r<rr.length;r++){cc=ooo.sel('td',rr[r]);rrr=target.insertRow(r);for(c=0;c<cc.length;c++){ccc=rrr.insertCell(c);ccc.innerHTML=ooo.ixml(cc[c]).replace(/&amp;/g,'&');}}}
-}}};
-uno.xml._varpickup=function(exp,node,mode){if(ooo.inoe(mode)){mode='normal';}
-        if(ooo.starts(exp,'#ELEMENT#')){return ooo.ixml(node,true);}
-        else if(ooo.starts(exp,'@')){return ooo.xatt(node,exp.slice(1));}
-        else{var xx=ooo.sel(exp,node);
-          if(mode=='normal'){return ooo.ixml(xx[0],true);}
-          if(mode=='cdata'){return ooo.ixml(xx[0],false);}
-          else if(mode=='xpathresult'){return xx}
-          else if(ooo.starts(mode,'csv')){var sep='!';if(mode.indexOf(':')>-1){sep=mode.split(':')[1]};var out='';var x;var o='';for(x=0;x<xx.length-1;x++){o=ooo.ixml(xx[x],true);if(o){out+=o+sep;}}o=ooo.ixml(xx[xx.length-1],true);if(o){out+=o;}return out;}   
-          else if(mode=='date'){var out=ooo.ixml(xx[0],true);var y=parseInt(out.substr(0,4));var m=parseInt(out.substr(4,2));var d=parseInt(out.substr(6,2));var h=parseInt(out.substr(8,2));var mm=parseInt(out.substr(12,2));var s=parseInt(out.substr(15,2));return new Date(y,m-1,d,h,mm,s);}       
-          else{return ooo.ixml(xx[0],true);}}};
-uno.xml._converts=function(value,mode){try{if(value&&mode){if(mode=='host'){return ooo.sub(value,'#HOST#',ooo.host);}
-else if(mode=='friendlydate'){return uno.friendlydate(value);}
-else if(mode=='lower'){return value.toLowerCase();}else if(mode=='upper'){return value.toUpperCase();}
-else if(ooo.starts(mode,'globalize:')){var ss=mode.split(':');return Globalize.format(value,ss[1]);}
-else{var cd=mode+"(\'"+value.replace(/'/g,'\\\'')+'\');';return eval(cd);}}else{return value;}}catch(ex){return value;}};
-
 // ------------------------------------------------- CHAINLOAD -----------------------------------------------------------------------------
 uno.xml._chainload=function(node,sublev,consts,consts_name,const_conds,const_conds_name,vars,vars_name,conds,conds_name,outcodes){
  var e=0;var tgt='';var curl='';var durl='';var timeout=350;var nodes;var ctcname='content';var ctrname='control';var appnd='normal';
