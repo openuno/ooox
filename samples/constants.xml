@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <sample>
 <templatexml w="69%">
-   <document>
+     <document>
   <constant tagname="a" substitution="%a"/>
   <constant tagname="b" substitution="%b"/>
   <constant tagname="a|b|b2|c|c/@n" substitution="%pickedup" pickup="csv: ,"/>
+  <constant tagname="a|b|b2|c|c/@n" substitution="%jspickedup" pickup="csv: ," escape="url"/>
 
   <constant tagname="b" substitution="%jsb" escape="js"/>
   <constant tagname="b2" substitution="%js2b" escape="js"/>
@@ -23,7 +24,7 @@
     <error>Const cond 3 evalued ERROR (%cn3)<br/></error></constantcondition>
     
   <afterall>%cn : %b AND %a (this is afterall) %cjs <br/>%ccond1%ccond2%ccond3</afterall>
-  <beforeall>%cn : %a AND %b (this is beforeall) %cjs<br/>%pickedup<br/></beforeall>
+  <beforeall>%cn : %a AND %b (this is beforeall) %cjs<br/>%pickedup<br/>%jspickedup<br/></beforeall>
 </document></templatexml>
 <dataxml w="29%"><document>
   <a>data a</a>
