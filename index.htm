@@ -2,9 +2,9 @@
 <html><head><title>OOO</title><script src="ooox.js">  </script>	
 	<script>
 		appstart=function(){
-			uno.xml.preload('template-doc-root.xml',function(){
-				uno.xml.preload('template-doc-node.xml',function(){
-					uno.xml.rendercontrol('maintarget','template-doc-root.xml','template-references.xml',false,function(){
+			ooo.preload('template-doc-root.xml',function(){
+				ooo.preload('template-doc-node.xml',function(){
+					ooo.render('maintarget','template-doc-root.xml','template-references.xml',false,'normal',function(){
 						ooo.toggleclass(ooo.sel('//code',document),'-multihide');
 						ooo.toggleclass(ooo.sel('//a[contains(@class,\'demolink\')]',document),'-multihide');	
 					});
