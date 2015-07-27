@@ -1,6 +1,7 @@
 # ooox
 <div id="supercontainer" style="width:70%%;margin-left:15%">
-Javascript engine for xml transformation. - <a href="http://www.tipozerozero.com/ooox/" target="_blank">see this project live</a><br/><br/>
+Small and fast, resource independent javascript engine for xml transformation.
+- <a href="http://www.tipozerozero.com/ooox/" target="_blank">see this project live</a><br/><br/>
 
 - Template references are available <a href="http://www.tipozerozero.com/ooox/index.htm">here</a><br/><br/>
 
