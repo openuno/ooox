@@ -6,6 +6,7 @@ Small and fast, resource independent javascript engine for xml transformation.
 - Template references are available <a href="http://www.tipozerozero.com/ooox/index.htm">here</a><br/><br/>
 - Jump to something with html and colors <a href="http://www.tipozerozero.com/ooox/sample.htm?t=randomhtml">here</a><br/><br/>
 - Jump to something with svg and colors <a href="http://www.tipozerozero.com/ooox/sample.htm?t=randomsvg">here</a><br/><br/>
+- The two colorful examples above demonstrate the transformation of noise (random numbers) to arbitrary code.
 
 - The majority of samples, full featured use case, important renamings,... are not done yet - check back in september 2015.<br/>
 </div>
