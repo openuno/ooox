@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?><document><querystring varname="t" substitution="%title"/><title>OOO - %title.xml</title>
 <constant tagname="//templatexml" substitution="%txml" pickup="cdata"/><constant tagname="//dataxml" substitution="%dxml" pickup="cdata"/>
 <constant tagname="//templatexml/@w" substitution="%Wtxml"/><constant tagname="//dataxml/@w" substitution="%Wdxml"/>
-<beforeall><textarea style="width:%Wtxml;">%txml</textarea><textarea style="width:%Wdxml;">%dxml</textarea><input type="button" onclick="ooo.syncrender(eNS(this),ooo.parsexml(ePS(ePS(this)).value).documentElement,ooo.parsexml(ePS(this).value).documentElement);" value="RENDER"/><div>...</div></beforeall>
+<beforeall><textarea style="width:%Wtxml;">%txml</textarea><textarea style="width:%Wdxml;">%dxml</textarea><input type="button" onclick="if(this.value=='RENDER'){ooo.syncrender(eNS(this),ooo.parsexml(ePS(ePS(this)).value).documentElement,ooo.parsexml(ePS(this).value).documentElement);this.value='CLEAR';}else{eNS(this).innerHTML='';this.value='RENDER';}" value="RENDER"/><div>...</div></beforeall>
 </document>
