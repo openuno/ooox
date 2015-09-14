@@ -23,5 +23,5 @@
 <beforeall><![CDATA[<svg height="300" width="1000">]]></beforeall>
 </document></templatexml>
 <dataxml w="29%"> </dataxml>
-<userandomdata />
+<userandomdata num="3" />
 </sample>
