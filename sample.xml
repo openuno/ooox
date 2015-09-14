@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?><document><querystring varname="t" substitution="%title"/><title>OOO - %title.xml</title>
 <constant tagname="//templatexml" substitution="%txml" pickup="cdata"/><constant tagname="//dataxml" substitution="%dxml" pickup="cdata"/>
 <constant tagname="//templatexml/@w" substitution="%Wtxml"/><constant tagname="//dataxml/@w" substitution="%Wdxml"/>
-<beforeall><textarea style="width:%Wtxml;">%txml</textarea><textarea style="width:%Wdxml;">%dxml</textarea><input type="button" onclick="if(this.value=='RENDER'){ooo.syncrender(eNS(this),ooo.parsexml(ePS(ePS(this)).value).documentElement,ooo.parsexml(ePS(this).value).documentElement);this.value='CLEAR';}else{eNS(this).innerHTML='';this.value='RENDER';}" value="RENDER" style="position:relative;top:-30px;z-index:1001"/><div>...</div></beforeall>
+<beforeall><input type="button" onclick="var a=document.getElementsByTagName('textarea');var v='';if(this.value=='HIDE-UI'){v='none';this.value='SHOW-UI'}else{this.value='HIDE-UI'}a[0].style.display=v;a[1].style.display=v" value="HIDE-UI" style="position:absolute;top:0px;right:0px;" />
+  <textarea style="width:%Wtxml;">%txml</textarea><textarea style="width:%Wdxml;">%dxml</textarea><input type="button" onclick="if(this.value=='RENDER'){ooo.syncrender(eNS(this),ooo.parsexml(ePS(ePS(this)).value).documentElement,ooo.parsexml(ePS(this).value).documentElement);this.value='CLEAR';}else{eNS(this).innerHTML='';this.value='RENDER';}" value="RENDER" style="position:absolute;top:0px;z-index:1001"/><div>...</div></beforeall>
 </document>
