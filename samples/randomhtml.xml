@@ -15,8 +15,7 @@
  <variable tagname="@x" substitution="%bx" convert="byte" />
  <variable tagname="@y" substitution="%by" convert="byte" />
  <variable tagname="@z" substitution="%bz" convert="byte" />
- <html>
-    <div style="position:absolute;top:%xpx;left:%ypx;width:%zpx;height:%zpx;background-color:rgb(%by,%bx,%bz);" >&amp;nbsp</div>
+ <html><div style="position:absolute;top:%xpx;left:%ypx;width:%zpx;height:%zpx;background-color:rgb(%by,%bx,%bz);" >&amp;amp;nbsp</div>
  </html>
 </rowtype>
 </document></templatexml>
