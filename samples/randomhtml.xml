@@ -9,12 +9,12 @@
  <constantjavascript substitution="vdgtr">n500=function(v){return Math.floor(v*1000);}</constantjavascript>
  <constantjavascript substitution="vdgtr">n100=function(v){return Math.floor(v*100);}</constantjavascript>
 <rowtype tagname="//n" max="200">
- <variable tagname="@x" substitution="%x" convert="n1000" />
- <variable tagname="@y" substitution="%y"  convert="n500" />
- <variable tagname="@y" substitution="%z"  convert="n100" />
- <variable tagname="@x" substitution="%bx" convert="byte" />
- <variable tagname="@y" substitution="%by" convert="byte" />
- <variable tagname="@z" substitution="%bz" convert="byte" />
+ <variable tagname="@k0" substitution="%x" convert="n1000" />
+ <variable tagname="@k1" substitution="%y"  convert="n500" />
+ <variable tagname="@k1" substitution="%z"  convert="n100" />
+ <variable tagname="@k0" substitution="%bx" convert="byte" />
+ <variable tagname="@k1" substitution="%by" convert="byte" />
+ <variable tagname="@k2" substitution="%bz" convert="byte" />
  <html><div style="position:absolute;top:%xpx;left:%ypx;width:%zpx;height:%zpx;background-color:rgb(%by,%bx,%bz);" > </div>
  </html>
 </rowtype>
