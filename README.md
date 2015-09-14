@@ -4,7 +4,8 @@ Small and fast, resource independent javascript engine for xml transformation.
 - <a href="http://www.tipozerozero.com/ooox/" target="_blank">see this project live</a><br/><br/>
 
 - Template references are available <a href="http://www.tipozerozero.com/ooox/index.htm">here</a><br/><br/>
-- Jump to something with colors <a href="http://www.tipozerozero.com/ooox/sample.htm?t=randomhtml">here</a><br/><br/>
+- Jump to something with html and colors <a href="http://www.tipozerozero.com/ooox/sample.htm?t=randomhtml">here</a><br/><br/>
+- Jump to something with svg and colors <a href="http://www.tipozerozero.com/ooox/sample.htm?t=randomsvg">here</a><br/><br/>
 
 - The majority of samples, full featured use case, important renamings,... are not done yet - check back in september 2015.<br/>
 </div>
