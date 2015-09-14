@@ -14,7 +14,7 @@
  <variable tagname="./following-sibling::n/@k0" substitution="%z"  convert="n100" />
  <variable tagname="@k0" substitution="%bx" convert="byte" />
  <variable tagname="./following-sibling::n/@k0" substitution="%by" convert="byte" />
- <variable tagname="./previous-sibling::n/@k0" substitution="%bz" convert="byte" />
+ <variable tagname="./following-sibling::n/following-sibling::n/@k0" substitution="%bz" convert="byte" />
  <html><div style="position:absolute;top:%xpx;left:%ypx;width:%zpx;height:%zpx;background-color:rgb(%by,%bx,%bz);" > </div>
  </html>
 </rowtype>
