@@ -22,8 +22,8 @@ byteToHex=function(b) {b=Math.floor(b*256);return hexChar[(b >> 4) &amp;amp; 0x0
  <variable tagname="@k1" substitution="%h1"  convert="byteToHex" />
  <variable tagname="@k0" substitution="%h0"  convert="byteToHex" />
  <html>
-    <path d="M0 %y Q %x %sz 500 150 %sx %z 1000 %y" stroke="#%h1%h2%h3" fill="none" stroke-width="1"/>
-    <path d="M0 %y Q 250 %sz %mx 150 750 %z 1000 %y" stroke="#%h1%h2%h3" fill="none" stroke-width="1"/>
+    <path d="M0 %y Q %x %sz 500 150 %sx %z 1000 %y" stroke="#%h1%h2%h0" fill="none" stroke-width="1"/>
+    <path d="M0 %y Q 250 %sz %mx 150 750 %z 1000 %y" stroke="#%h1%h2%h0" fill="none" stroke-width="1"/>
  </html>
 </rowtype>
 <afterall><![CDATA[</svg>]]></afterall>
