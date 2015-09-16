@@ -7,7 +7,7 @@
  <constantjavascript substitution="ghgh">sign=function(v){return v-0.5}</constantjavascript>
  <constantjavascript substitution="vdgr">n1000=function(v){return Math.floor(v*500);}</constantjavascript>
  <constantjavascript substitution="vdgtr">n500=function(v){return Math.floor(v*1000);}</constantjavascript>
- <constantjavascript substitution="vdgtr">n100=function(v){return Math.floor(v*100);}document.body.style.backgroundColor='black';</constantjavascript>
+ <constantjavascript substitution="vdgtr">n100=function(v){return Math.floor(v*100);};document.body.style.backgroundColor='black';</constantjavascript>
 <rowtype tagname="//n" max="300">
  <variable tagname="@k0" substitution="%x" convert="n1000" />
  <variable tagname="@k1" substitution="%y"  convert="n500" />
