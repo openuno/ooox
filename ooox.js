@@ -283,7 +283,7 @@ uno.xml._chainload=function(node,sublev,consts,consts_name,const_conds,const_con
   try{if(sublev>0){
     if(sublev>1){tgt=ooo._XTRsubs(tgt,conds,conds_name);tgt=ooo._XTRsubs(tgt,vars,vars_name);curl=ooo._XTRsubs(curl,conds,conds_name);curl=ooo._XTRsubs(curl,vars,vars_name);durl=ooo._XTRsubs(durl,conds,conds_name);durl=ooo._XTRsubs(durl,vars,vars_name);}
     tgt=ooo._XTRsubs(tgt,const_conds,const_conds_name);tgt=ooo._XTRsubs(tgt,consts,consts_name);curl=ooo._XTRsubs(curl,const_conds,const_conds_name);curl=ooo._XTRsubs(curl,consts,consts_name);durl=ooo._XTRsubs(durl,const_conds,const_conds_name);durl=ooo._XTRsubs(durl,consts,consts_name);}
-    if(sublev>1){outcodes[outcodes.length]='uno.xml.rendercontrol(\''+tgt+'\',\''+curl+'\',\''+durl+'\',false,false,\''+appnd+'\');\n';}
-    else{setTimeout('uno.xml.rendercontrol(\''+tgt+'\',\''+curl+'\',\''+durl+'\',false,false,\''+appnd+'\');',timeout);timeout+=ooo.rendertimestep;}}    
+    if(sublev>1){outcodes[outcodes.length]='ooo.render(\''+tgt+'\',\''+curl+'\',\''+durl+'\',false,false,\''+appnd+'\');\n';}
+    else{setTimeout('ooo.render(\''+tgt+'\',\''+curl+'\',\''+durl+'\',false,false,\''+appnd+'\');',timeout);timeout+=ooo.rendertimestep;}}    
   catch(exxxx){ooo.err('Error chainloading control '+e+'.');}}
   if(sublev>1){return outcodes;}};
