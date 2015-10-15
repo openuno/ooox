@@ -69,14 +69,10 @@ $.load=function(url,_elm,_onfinish,_onstep,_onerror,_mem){var req=this._req();
 /*-----------------------------------------------------------------------------------------------------  XML RENDER TOOL */
  $.preload=function(url,_onfinish,_mem){if(!_mem){_mem={}}_mem.pre_url=url;_mem.pre_onfinish=_onfinish;return $.load(url,false,$._dopreload,false,false,_mem)};
  $.preloaded=function(name){name=ooo.sub(name,'#HOST#',ooo.host);for(var i=0;i<ooo._preloaded.length;i++){if(ooo._preloaded[i].url==name){return ooo._preloaded[i].xml;}}return false;};
- $.syncrender=function(target,template,data,_mode){var allsubs=ooo.sel('//*/@substitution',template);
- var b;for(var a=0;a<allsubs.length;a++){
- 	for(b=a+1;b<allsubs.length;b++){
+ $.syncrender=function(target,template,data,_mode){var allsubs=ooo.sel('//*/@substitution',template);var b;
+ 	for(var a=0;a<allsubs.length;a++){for(b=a+1;b<allsubs.length;b++){
  		if(ooo.starts(allsubs[a].value,allsubs[b].value)||ooo.starts(allsubs[b].value,allsubs[a].value)){
- 			console.warn('Not all substitutions are uniquely prefixed:'+allsubs[a]+':'+allsubs[b])
- 		}
- 	}
- }
+ 			console.warn('Not all substitutions are uniquely prefixed:'+allsubs[a]+':'+allsubs[b])}}};
  $._syncrender(target,template,data,_mode||'normal');};
  $.render=function(target,template,data,_elm,_mode,_onfinish,_onstep,_onerror){return $.load(template,_elm,$._dorendercontrol1,false,false,{"target":target,"template":template,"data":data,"elm":_elm,"onfinish":_onfinish,"onstep":_onstep,"onerror":_onerror,"mode":_mode||'normal'});};
  $._req=function(){var rq=false;if(window.XMLHttpRequest&&!(window.ActiveXObject)){try{rq=new XMLHttpRequest();}catch(exk){rq=false;}}else if(window.ActiveXObject){try{rq=new ActiveXObject("Msxml2.XMLHTTP");}catch(ex){try{rq=new ActiveXObject("Microsoft.XMLHTTP");}catch(exx){rq=false;}}}if(!rq){ooo.err('This browser is neither w3c or mozilla compatible*[2008], uno.xml javascript framework will not work.');}return rq;};
