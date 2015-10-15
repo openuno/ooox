@@ -135,8 +135,9 @@ rbefore=ooo.sub(rbefore,'#ROWCOUNT#',rows.length.toLocaleString());rafter=ooo.su
 /*ROW-VARIABLEs*/for(v=0;v<xvars.length;v++){vars[v]=ooo._varpickup(xvars[v],rows[x],[const_conds,const_conds_name,consts,consts_name]);}
 /*ROW-FIXED vars(text, xml, innerxml, rowcount and  betweenrowcount)*/
 	vars[v]=ooo.xtext(rows[x],true);vars[v+1]=ooo.xml(rows[x],true);vars[v+2]=x;vars[v+3]=rows.length.toLocaleString();vars[v+4]=pagecount.toLocaleString();vars[v+5]=ooo.ixml(rows[x]);
-/*ROW-SWITCHes*/vins=v+6;var swflag=false;var matched=-1;for(v=0;v<xswitches.length;v++){matched=-1;swflag=false;
+/*ROW-SWITCHes*/vins=v+6;var swflag=false;var swjsflag=false;var matched=-1;for(v=0;v<xswitches.length;v++){matched=-1;swflag=false;
 	nn=xswitches[v].getElementsByTagName('match');s=ooo._XTRsubs(xswitchesv[v],vars,vars_name);vars[vins+v]='';
+	if(!ooo.inoe(ooo.xatt(xswitches[v],'js'))){s=eval(s);}
 	if(ooo.xatt(xswitches[v],'compare')=='contains'){for(i=0;i<nn.length;i++){if(s.indexOf(ooo.xatt(nn[i],'value'))>-1){matched=i;i=1000;swflag=true;}}}
 	else{for(i=0;i<nn.length;i++){if(s==ooo.xatt(nn[i],'value')){matched=i;i=1000;swflag=true;}}}
 	if(!swflag){for(i=0;i<nn.length;i++){if(!ooo.inoe(ooo.xatt(nn[i],'default'))){matched=i;i=1000;}}}
