@@ -1,5 +1,5 @@
 /*---------- uno.xml.js v 0.8.0.0 - Released by Hideki Yamamoto - MIT equiv. ----------*/
-/*This is not minified, this is how I have worked up until now... */
+/*This is not minified, this is how I have worked up until now... first version of this is dated 2007 */
 /*u1=function(o,t,v){o.setAttribute(t,v);};_u2=function(u){var o=document.createElement('script');_u1(o,'type','text/javascript');_u1(o,'src',u);document.getElementsByTagName('head')[0].appendChild(o);};*/
 /*--------------------------------------------------------------------------------------------------  BROWSER RECOGNITION */
 window._t00UA=navigator.userAgent.toLowerCase();window._t00D=window.document;
